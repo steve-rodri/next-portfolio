@@ -216,15 +216,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData
 }
 
-export interface SanityImage {
-  _type: "image"
-  asset: {
-    _ref: string
-    _type: "reference"
-  }
-  alt?: string
-}
-
 export type SanityAssetSourceData = {
   _type: "sanity.assetSourceData"
   name?: string

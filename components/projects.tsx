@@ -16,6 +16,7 @@ import Link from "next/link"
 import type { Project } from "@/types/sanity"
 import { urlFor } from "@/lib/sanity"
 import Image from "next/image"
+import { PortableText, PortableTextBlock } from "next-sanity"
 
 interface ProjectsProps {
   projects: Project[]
@@ -52,73 +53,82 @@ export default function Projects({ projects = [] }: ProjectsProps) {
         </motion.div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project._id || index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="h-full flex flex-col overflow-hidden">
-                <div className="aspect-video overflow-hidden">
-                  {project.image?.asset?._ref ? (
-                    <Image
-                      src={
-                        urlFor(project.image).width(500).height(300).url() ||
-                        "/placeholder.svg"
-                      }
-                      alt={project.image.alt || project.title}
-                      width={500}
-                      height={300}
-                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-                    />
-                  ) : (
-                    <img
-                      src="/placeholder.svg?height=300&width=500"
-                      alt={project.title}
-                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-                    />
-                  )}
-                </div>
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags?.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="secondary">
-                        {tag}
-                      </Badge>
-                    ))}
+          {projects.map((project, index) => {
+            console.log(project.description)
+            return (
+              <motion.div
+                key={project._id || index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full flex flex-col overflow-hidden">
+                  <div className="aspect-video overflow-hidden">
+                    {project.image?.asset?._ref ? (
+                      <Image
+                        src={
+                          urlFor(project.image).width(500).height(300).url() ||
+                          "/placeholder.svg"
+                        }
+                        alt={project.image.alt || project.title}
+                        width={500}
+                        height={300}
+                        className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                      />
+                    ) : (
+                      <img
+                        src="/placeholder.svg?height=300&width=500"
+                        alt={project.title}
+                        className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                      />
+                    )}
                   </div>
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button variant="outline" size="sm" asChild>
-                    <Link
-                      href={project.githubUrl || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </Link>
-                  </Button>
-                  <Button size="sm" asChild>
-                    <Link
-                      href={project.liveUrl || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Live Demo
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
+                  <CardHeader>
+                    <CardTitle>{project.title}</CardTitle>
+                    <CardDescription>
+                      <PortableText
+                        value={
+                          project.description as unknown as PortableTextBlock
+                        }
+                      />
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags?.map((tag, tagIndex) => (
+                        <Badge key={tagIndex} variant="secondary">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex justify-between">
+                    <Button variant="outline" size="sm" asChild>
+                      <Link
+                        href={project.githubUrl || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="mr-2 h-4 w-4" />
+                        Code
+                      </Link>
+                    </Button>
+                    <Button size="sm" asChild>
+                      <Link
+                        href={project.liveUrl || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Live Demo
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

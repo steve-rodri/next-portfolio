@@ -1,5 +1,6 @@
 import { createClient } from "next-sanity"
 import imageUrlBuilder from "@sanity/image-url"
+import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 
 // Check if environment variables are defined
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
@@ -24,12 +25,7 @@ export const client = createClient({
 // Helper function to build image URLs
 const builder = imageUrlBuilder(client)
 
-export function urlFor(source: any) {
-  if (!source || !source.asset) {
-    return {
-      url: () => "/placeholder.svg?height=400&width=400",
-    }
-  }
+export function urlFor(source: SanityImageSource) {
   return builder.image(source)
 }
 
