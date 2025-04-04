@@ -34,7 +34,7 @@ export const personalInfoQuery = groq`
 export async function getPersonalInfo() {
   try {
     const data = await fetchSanity<PersonalInfoQueryResult>(personalInfoQuery)
-    if (!data) throw new Error("No Data")
+    if (!data) return defaultPersonalInfo
     return data
   } catch (error) {
     console.error("Error fetching personal info:", error)
@@ -57,7 +57,7 @@ export const skillsQuery = groq`
 export async function getSkills() {
   try {
     const data = await fetchSanity<SkillsQueryResult>(skillsQuery)
-    if (!data) throw new Error("No Data")
+    if (!data) return []
     return data
   } catch (error) {
     console.error("Error fetching skills:", error)
@@ -80,7 +80,7 @@ export const experiencesQuery = groq`
 export async function getExperiences() {
   try {
     const data = await fetchSanity<ExperiencesQueryResult>(experiencesQuery)
-    if (!data) throw new Error("No Data")
+    if (!data) return []
     return data
   } catch (error) {
     console.error("Error fetching experiences:", error)
@@ -103,7 +103,7 @@ export const educationQuery = groq`
 export async function getEducation() {
   try {
     const data = await fetchSanity<EducationQueryResult>(educationQuery)
-    if (!data) throw new Error("No Data")
+    if (!data) return defaultEducation
     return data
   } catch (error) {
     console.error("Error fetching education:", error)
@@ -135,7 +135,7 @@ export const projectsQuery = groq`
 export async function getProjects() {
   try {
     const data = await fetchSanity<ProjectsQueryResult>(projectsQuery)
-    if (!data) throw new Error("No Data")
+    if (!data) return defaultProjects
     return data
   } catch (error) {
     console.error("Error fetching projects:", error)

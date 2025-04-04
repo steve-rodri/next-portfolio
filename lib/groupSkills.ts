@@ -10,6 +10,7 @@ export interface SkillGroup {
 
 // Function to group skills by category after sorting
 export function groupSkills(skills: SkillsQueryResult): SkillGroup[] {
+  if (!skills.length) return []
   // First, sort the skills:
   // - Featured skills first (descending order)
   // - Then alphabetically by name (ascending order)
