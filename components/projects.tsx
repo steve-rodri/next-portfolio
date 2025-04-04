@@ -54,7 +54,6 @@ export default function Projects({ projects = [] }: ProjectsProps) {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => {
-            console.log(project.description)
             return (
               <motion.div
                 key={project._id || index}

@@ -12,11 +12,24 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+        maxLength: 96,
+      },
+    }),
+    defineField({
+      name: "summary",
+      title: "Summary",
+      type: "string",
+    }),
+    defineField({
       name: "description",
       title: "Description",
-      type: "text",
-      rows: 3,
-      validation: (Rule) => Rule.required(),
+      type: "array",
+      of: [{ type: "block" }],
     }),
     defineField({
       name: "image",
@@ -35,10 +48,10 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "tags",
+      name: "technologies",
       title: "Technologies Used",
       type: "array",
-      of: [{ type: "string" }],
+      of: [{ type: "reference", to: [{ type: "skill" }] }],
       validation: (Rule) => Rule.required(),
     }),
     defineField({

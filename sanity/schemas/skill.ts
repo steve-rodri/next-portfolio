@@ -6,6 +6,27 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
+      name: "name",
+      title: "Skill Name",
+      type: "string",
+    }),
+
+    defineField({
+      name: "featured",
+      title: "Featured Skill",
+      type: "boolean",
+      description: "Mark this skill as featured",
+      initialValue: true,
+    }),
+    defineField({
+      name: "level",
+      title: "Proficiency Level",
+      type: "string",
+      options: {
+        list: ["Beginner", "Intermediate", "Advanced", "Expert"],
+      },
+    }),
+    defineField({
       name: "category",
       title: "Category",
       type: "string",
@@ -20,23 +41,16 @@ export default defineType({
         ],
       },
     }),
-    defineField({
-      name: "items",
-      title: "Skills",
-      type: "array",
-      of: [{ type: "string" }],
-      validation: (Rule) => Rule.required(),
-    }),
   ],
   preview: {
     select: {
-      title: "category",
-      subtitle: "items",
+      title: "name",
+      subtitle: "category",
     },
     prepare({ title, subtitle }) {
       return {
         title,
-        subtitle: Array.isArray(subtitle) ? subtitle.join(", ") : "",
+        subtitle,
       }
     },
   },
