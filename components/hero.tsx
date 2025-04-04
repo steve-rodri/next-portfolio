@@ -5,11 +5,11 @@ import { motion } from "framer-motion"
 import { ArrowDown, Github, Linkedin, Twitter } from "lucide-react"
 import Link from "next/link"
 import { urlFor } from "@/lib/sanity"
-import type { PersonalInfo } from "@/types/sanity"
+import type { PersonalInfoQueryResult } from "@/types/sanity"
 import Image from "next/image"
 
 interface HeroProps {
-  personalInfo: PersonalInfo
+  personalInfo: PersonalInfoQueryResult
 }
 
 export default function Hero({ personalInfo }: HeroProps) {
@@ -30,7 +30,7 @@ export default function Hero({ personalInfo }: HeroProps) {
   const getSocialLink = (platform: string) => {
     return (
       socialLinks?.find(
-        (link) => link.platform.toLowerCase() === platform.toLowerCase(),
+        (link) => link.platform?.toLowerCase() === platform.toLowerCase(),
       )?.url || "#"
     )
   }

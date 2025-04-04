@@ -1,196 +1,142 @@
-import { fetchSanity } from "./sanity"
-import type {
-  PersonalInfo,
-  Skill,
-  Experience,
-  Education,
-  Project,
+import {
+  EducationQueryResult,
+  ExperiencesQueryResult,
+  PersonalInfoQueryResult,
+  ProjectsQueryResult,
+  SkillsQueryResult,
 } from "@/types/sanity"
+import { fetchSanity } from "./sanity"
+import groq from "groq"
+import {
+  defaultEducation,
+  defaultExperiences,
+  defaultPersonalInfo,
+  defaultProjects,
+} from "./defaults"
 
-// Default fallback data
-const defaultPersonalInfo: PersonalInfo = {
-  _id: "default",
-  name: "John Doe",
-  role: "Software Developer",
-  bio: "A passionate software developer with experience in web development.",
-  email: "john.doe@example.com",
-  phone: "+1 (555) 123-4567",
-  location: "San Francisco, CA",
-  profileImage: {
-    _type: "image",
-    asset: {
-      _ref: "",
-      _type: "reference",
-    },
-  },
-  socialLinks: [
-    { platform: "github", url: "https://github.com" },
-    { platform: "linkedin", url: "https://linkedin.com" },
-    { platform: "twitter", url: "https://twitter.com" },
-  ],
-}
+export const personalInfoQuery = groq`
+  *[_type == "personalInfo"][0] {
+    _id,
+    name,
+    role,
+    bio,
+    email,
+    phone,
+    location,
+    profileImage,
+    socialLinks[] {
+      platform,
+      url
+    }
+  }
+`
 
-const defaultSkills: Skill[] = [
-  {
-    _id: "frontend",
-    category: "Frontend",
-    items: ["HTML", "CSS", "JavaScript", "React", "Next.js"],
-  },
-  {
-    _id: "backend",
-    category: "Backend",
-    items: ["Node.js", "Express", "MongoDB", "SQL"],
-  },
-  {
-    _id: "tools",
-    category: "Tools",
-    items: ["Git", "GitHub", "VS Code", "Figma"],
-  },
-]
-
-const defaultExperiences: Experience[] = [
-  {
-    _id: "exp1",
-    title: "Software Developer",
-    company: "Tech Company",
-    period: "2020 - Present",
-    description: "Developing web applications using modern technologies.",
-    order: 1,
-  },
-]
-
-const defaultEducation: Education[] = [
-  {
-    _id: "edu1",
-    degree: "Computer Science Degree",
-    institution: "University",
-    period: "2016 - 2020",
-    description: "Studied computer science and software engineering.",
-    order: 1,
-  },
-]
-
-const defaultProjects: Project[] = [
-  {
-    _id: "proj1",
-    title: "Portfolio Website",
-    description:
-      "A personal portfolio website built with Next.js and Tailwind CSS.",
-    image: {
-      _type: "image",
-      asset: {
-        _ref: "",
-        _type: "reference",
-      },
-    },
-    tags: ["Next.js", "React", "Tailwind CSS"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
-    featured: true,
-    order: 1,
-  },
-]
-
-export async function getPersonalInfo(): Promise<PersonalInfo> {
+export async function getPersonalInfo() {
   try {
-    const data = await fetchSanity<PersonalInfo>(`
-      *[_type == "personalInfo"][0] {
-        _id,
-        name,
-        role,
-        bio,
-        email,
-        phone,
-        location,
-        profileImage,
-        socialLinks[] {
-          platform,
-          url
-        }
-      }
-    `)
-
-    return data || defaultPersonalInfo
+    const data = await fetchSanity<PersonalInfoQueryResult>(personalInfoQuery)
+    if (!data) throw new Error("No Data")
+    return data
   } catch (error) {
     console.error("Error fetching personal info:", error)
     return defaultPersonalInfo
   }
 }
 
-export async function getSkills(): Promise<Skill[]> {
-  try {
-    const data = await fetchSanity<Skill[]>(`
-      *[_type == "skill"] {
-        _id,
-        category,
-        items
-      }
-    `)
+// Skills
+export const skillsQuery = groq`
+  *[_type == "skill"] {
+    _id,
+    name,
+    featured,
+    level,
+    category
+  }
+  | order(category asc, featured desc, name asc)
+`
 
-    return data && data.length > 0 ? data : defaultSkills
+export async function getSkills() {
+  try {
+    const data = await fetchSanity<SkillsQueryResult>(skillsQuery)
+    if (!data) throw new Error("No Data")
+    return data
   } catch (error) {
     console.error("Error fetching skills:", error)
-    return defaultSkills
+    return [] // Or a default value
   }
 }
 
-export async function getExperiences(): Promise<Experience[]> {
-  try {
-    const data = await fetchSanity<Experience[]>(`
-      *[_type == "experience"] | order(order asc) {
-        _id,
-        title,
-        company,
-        period,
-        description,
-        order
-      }
-    `)
+// Experiences
+export const experiencesQuery = groq`
+  *[_type == "experience"] | order(order asc) {
+    _id,
+    title,
+    company,
+    period,
+    description,
+    order
+  }
+`
 
-    return data && data.length > 0 ? data : defaultExperiences
+export async function getExperiences() {
+  try {
+    const data = await fetchSanity<ExperiencesQueryResult>(experiencesQuery)
+    if (!data) throw new Error("No Data")
+    return data
   } catch (error) {
     console.error("Error fetching experiences:", error)
     return defaultExperiences
   }
 }
 
-export async function getEducation(): Promise<Education[]> {
-  try {
-    const data = await fetchSanity<Education[]>(`
-      *[_type == "education"] | order(order asc) {
-        _id,
-        degree,
-        institution,
-        period,
-        description,
-        order
-      }
-    `)
+// Education
+export const educationQuery = groq`
+  *[_type == "education"] | order(order asc) {
+    _id,
+    degree,
+    institution,
+    period,
+    description,
+    order
+  }
+`
 
-    return data && data.length > 0 ? data : defaultEducation
+export async function getEducation() {
+  try {
+    const data = await fetchSanity<EducationQueryResult>(educationQuery)
+    if (!data) throw new Error("No Data")
+    return data
   } catch (error) {
     console.error("Error fetching education:", error)
     return defaultEducation
   }
 }
 
-export async function getProjects(): Promise<Project[]> {
-  try {
-    const data = await fetchSanity<Project[]>(`
-      *[_type == "project"] | order(order asc) {
-        _id,
-        title,
-        description,
-        image,
-        tags,
-        githubUrl,
-        liveUrl,
-        featured,
-        order
-      }
-    `)
+// Projects
+export const projectsQuery = groq`
+  *[_type == "project"] | order(order asc) {
+    _id,
+    title,
+    slug,
+    summary,
+    description,
+    image,
+    technologies[]->{
+      _id,
+      name,
+      category
+    },
+    githubUrl,
+    liveUrl,
+    featured,
+    "order": order
+  }
+`
 
-    return data && data.length > 0 ? data : defaultProjects
+export async function getProjects() {
+  try {
+    const data = await fetchSanity<ProjectsQueryResult>(projectsQuery)
+    if (!data) throw new Error("No Data")
+    return data
   } catch (error) {
     console.error("Error fetching projects:", error)
     return defaultProjects

@@ -17,10 +17,10 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, Phone } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import type { PersonalInfo } from "@/types/sanity"
+import type { PersonalInfoQueryResult } from "@/types/sanity"
 
 interface ContactProps {
-  personalInfo: PersonalInfo
+  personalInfo: PersonalInfoQueryResult
 }
 
 export default function Contact({ personalInfo }: ContactProps) {

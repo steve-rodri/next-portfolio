@@ -9,6 +9,7 @@ export default defineType({
       name: "name",
       title: "Skill Name",
       type: "string",
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
@@ -17,6 +18,7 @@ export default defineType({
       type: "boolean",
       description: "Mark this skill as featured",
       initialValue: true,
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "level",

@@ -13,13 +13,13 @@ import {
 } from "@/components/ui/card"
 import { ExternalLink, Github } from "lucide-react"
 import Link from "next/link"
-import type { Project } from "@/types/sanity"
+import type { ProjectsQueryResult } from "@/types/sanity"
 import { urlFor } from "@/lib/sanity"
 import Image from "next/image"
 import { PortableText, PortableTextBlock } from "next-sanity"
 
 interface ProjectsProps {
-  projects: Project[]
+  projects: ProjectsQueryResult
 }
 
 export default function Projects({ projects = [] }: ProjectsProps) {
@@ -95,9 +95,9 @@ export default function Projects({ projects = [] }: ProjectsProps) {
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <div className="flex flex-wrap gap-2">
-                      {project.tags?.map((tag, tagIndex) => (
+                      {project.technologies?.map((tech, tagIndex) => (
                         <Badge key={tagIndex} variant="secondary">
-                          {tag}
+                          {tech.name}
                         </Badge>
                       ))}
                     </div>

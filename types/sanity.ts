@@ -68,12 +68,6 @@ export type Geopoint = {
   alt?: number
 }
 
-export type Slug = {
-  _type: "slug"
-  current: string
-  source?: string
-}
-
 export type Project = {
   _id: string
   _type: "project"
@@ -81,7 +75,26 @@ export type Project = {
   _updatedAt: string
   _rev: string
   title: string
-  description: string
+  slug?: Slug
+  summary?: string
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: "span"
+      _key: string
+    }>
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote"
+    listItem?: "bullet" | "number"
+    markDefs?: Array<{
+      href?: string
+      _type: "link"
+      _key: string
+    }>
+    level?: number
+    _type: "block"
+    _key: string
+  }>
   image: {
     asset?: {
       _ref: string
@@ -95,11 +108,23 @@ export type Project = {
     alt?: string
     _type: "image"
   }
-  tags: Array<string>
+  technologies: Array<{
+    _ref: string
+    _type: "reference"
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: "skill"
+  }>
   githubUrl?: string
   liveUrl?: string
   featured?: boolean
   order: number
+}
+
+export type Slug = {
+  _type: "slug"
+  current: string
+  source?: string
 }
 
 export type Education = {
@@ -134,8 +159,10 @@ export type Skill = {
   _createdAt: string
   _updatedAt: string
   _rev: string
+  name: string
+  featured: boolean
+  level?: "Beginner" | "Intermediate" | "Advanced" | "Expert"
   category: "Frontend" | "Backend" | "Tools" | "Design" | "Other"
-  items: Array<string>
 }
 
 export type PersonalInfo = {
@@ -216,15 +243,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData
 }
 
-export interface SanityImage {
-  _type: "image"
-  asset: {
-    _ref: string
-    _type: "reference"
-  }
-  alt?: string
-}
-
 export type SanityAssetSourceData = {
   _type: "sanity.assetSourceData"
   name?: string
@@ -249,8 +267,8 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
-  | Slug
   | Project
+  | Slug
   | Education
   | Experience
   | Skill
@@ -261,3 +279,129 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageMetadata
 export declare const internalGroqTypeReferenceTo: unique symbol
+// Source: lib/queries.ts
+// Variable: personalInfoQuery
+// Query: *[_type == "personalInfo"][0] {    _id,    name,    role,    bio,    email,    phone,    location,    profileImage,    socialLinks[] {      platform,      url    }  }
+export type PersonalInfoQueryResult = {
+  _id: string
+  name: string
+  role: string
+  bio: string
+  email: string
+  phone: string | null
+  location: string | null
+  profileImage: {
+    asset?: {
+      _ref: string
+      _type: "reference"
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: "image"
+  } | null
+  socialLinks: Array<{
+    platform:
+      | "facebook"
+      | "github"
+      | "instagram"
+      | "linkedin"
+      | "other"
+      | "twitter"
+      | "youtube"
+      | null
+    url: string
+  }> | null
+} | null
+// Variable: skillsQuery
+// Query: *[_type == "skill"] {    _id,    name,    featured,    level,    category  }  | order(category asc, featured desc, name asc)
+export type SkillsQueryResult = Array<{
+  _id: string
+  name: string
+  featured: boolean
+  level: "Advanced" | "Beginner" | "Expert" | "Intermediate" | null
+  category: "Backend" | "Design" | "Frontend" | "Other" | "Tools"
+}>
+// Variable: experiencesQuery
+// Query: *[_type == "experience"] | order(order asc) {    _id,    title,    company,    period,    description,    order  }
+export type ExperiencesQueryResult = Array<{
+  _id: string
+  title: string
+  company: string
+  period: string
+  description: string
+  order: number
+}>
+// Variable: educationQuery
+// Query: *[_type == "education"] | order(order asc) {    _id,    degree,    institution,    period,    description,    order  }
+export type EducationQueryResult = Array<{
+  _id: string
+  degree: string
+  institution: string
+  period: string
+  description: string | null
+  order: number
+}>
+// Variable: projectsQuery
+// Query: *[_type == "project"] | order(order asc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category    },    githubUrl,    liveUrl,    featured,    "order": order  }
+export type ProjectsQueryResult = Array<{
+  _id: string
+  title: string
+  slug: Slug | null
+  summary: string | null
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: "span"
+      _key: string
+    }>
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal"
+    listItem?: "bullet" | "number"
+    markDefs?: Array<{
+      href?: string
+      _type: "link"
+      _key: string
+    }>
+    level?: number
+    _type: "block"
+    _key: string
+  }> | null
+  image: {
+    asset?: {
+      _ref: string
+      _type: "reference"
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: "image"
+  }
+  technologies: Array<{
+    _id: string
+    name: string
+    category: "Backend" | "Design" | "Frontend" | "Other" | "Tools"
+  }>
+  githubUrl: string | null
+  liveUrl: string | null
+  featured: boolean | null
+  order: number
+}>
+
+// Query TypeMap
+import "@sanity/client"
+declare module "@sanity/client" {
+  interface SanityQueries {
+    '\n  *[_type == "personalInfo"][0] {\n    _id,\n    name,\n    role,\n    bio,\n    email,\n    phone,\n    location,\n    profileImage,\n    socialLinks[] {\n      platform,\n      url\n    }\n  }\n': PersonalInfoQueryResult
+    '\n  *[_type == "skill"] {\n    _id,\n    name,\n    featured,\n    level,\n    category\n  }\n  | order(category asc, featured desc, name asc)\n': SkillsQueryResult
+    '\n  *[_type == "experience"] | order(order asc) {\n    _id,\n    title,\n    company,\n    period,\n    description,\n    order\n  }\n': ExperiencesQueryResult
+    '\n  *[_type == "education"] | order(order asc) {\n    _id,\n    degree,\n    institution,\n    period,\n    description,\n    order\n  }\n': EducationQueryResult
+    '\n  *[_type == "project"] | order(order asc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category\n    },\n    githubUrl,\n    liveUrl,\n    featured,\n    "order": order\n  }\n': ProjectsQueryResult
+  }
+}

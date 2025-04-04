@@ -38,7 +38,7 @@ export async function fetchSanity<T>(
     if (!projectId) {
       throw new Error("Sanity Project ID is missing")
     }
-    return await client.fetch<T>(query, params)
+    return client.fetch<T>(query, params)
   } catch (error) {
     console.error("Error fetching from Sanity:", error)
     throw error

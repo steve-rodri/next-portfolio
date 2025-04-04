@@ -1,9 +1,9 @@
 import Link from "next/link"
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
-import type { PersonalInfo } from "@/types/sanity"
+import type { PersonalInfoQueryResult } from "@/types/sanity"
 
 interface FooterProps {
-  personalInfo: PersonalInfo
+  personalInfo: PersonalInfoQueryResult
 }
 
 export default function Footer({ personalInfo }: FooterProps) {
@@ -24,7 +24,7 @@ export default function Footer({ personalInfo }: FooterProps) {
   const getSocialLink = (platform: string) => {
     return (
       personalInfo.socialLinks?.find(
-        (link) => link.platform.toLowerCase() === platform.toLowerCase(),
+        (link) => link.platform?.toLowerCase() === platform.toLowerCase(),
       )?.url || "#"
     )
   }

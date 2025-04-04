@@ -4,13 +4,19 @@ import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import type { Skill, Experience, Education, PersonalInfo } from "@/types/sanity"
+import type {
+  PersonalInfoQueryResult,
+  SkillsQueryResult,
+  ExperiencesQueryResult,
+  EducationQueryResult,
+} from "@/types/sanity"
+import { groupSkills } from "@/lib/groupSkills"
 
 interface AboutProps {
-  personalInfo: PersonalInfo
-  skills: Skill[]
-  experiences: Experience[]
-  education: Education[]
+  personalInfo: PersonalInfoQueryResult
+  skills: SkillsQueryResult
+  experiences: ExperiencesQueryResult
+  education: EducationQueryResult
 }
 
 export default function About({
@@ -29,6 +35,8 @@ export default function About({
       </section>
     )
   }
+
+  const skillGroups = groupSkills(skills)
 
   return (
     <section id="about" className="py-16 md:py-24 bg-muted/40">
@@ -63,7 +71,7 @@ export default function About({
               viewport={{ once: true }}
               transition={{ duration: 0.5, staggerChildren: 0.1 }}
             >
-              {skills.map((skillGroup, index) => (
+              {skillGroups.map((skillGroup, index) => (
                 <motion.div
                   key={skillGroup._id || index}
                   initial={{ opacity: 0, y: 20 }}
@@ -79,7 +87,7 @@ export default function About({
                       <div className="flex flex-wrap gap-2">
                         {skillGroup.items?.map((skill, skillIndex) => (
                           <Badge key={skillIndex} variant="secondary">
-                            {skill}
+                            {skill.name}
                           </Badge>
                         ))}
                       </div>
