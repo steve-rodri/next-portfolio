@@ -58,10 +58,10 @@ export default function About({
         </motion.div>
 
         <Tabs defaultValue="skills" className="w-full max-w-4xl mx-auto">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="education">Education</TabsTrigger>
+            {/* <TabsTrigger value="education">Education</TabsTrigger> */}
           </TabsList>
 
           <TabsContent value="skills" className="mt-6">
