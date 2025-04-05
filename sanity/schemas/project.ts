@@ -72,38 +72,38 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
-      name: "order",
-      title: "Order",
-      type: "number",
-      description: "Lower numbers appear first",
+      name: "startDate",
+      title: "Start Date",
+      type: "date",
+      description: "The date the project was started",
     }),
   ],
   orderings: [
     {
-      title: "Display Order",
-      name: "orderAsc",
-      by: [{ field: "order", direction: "asc" }],
+      title: "Start Date",
+      name: "startDateAsc",
+      by: [{ field: "startDate", direction: "asc" }],
     },
     {
       title: "Featured First",
       name: "featuredFirst",
       by: [
         { field: "featured", direction: "desc" },
-        { field: "order", direction: "asc" },
+        { field: "startDate", direction: "asc" },
       ],
     },
   ],
   preview: {
     select: {
       title: "title",
-      subtitle: "tags",
+      summary: "summary",
       media: "image",
       featured: "featured",
     },
-    prepare({ title, subtitle, media, featured }) {
+    prepare({ title, summary, media, featured }) {
       return {
         title: featured ? `★ ${title}` : title,
-        subtitle: Array.isArray(subtitle) ? subtitle.join(", ") : "",
+        subtitle: summary,
         media,
       }
     },

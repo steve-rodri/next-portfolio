@@ -118,7 +118,7 @@ export type Project = {
   githubUrl?: string
   liveUrl?: string
   featured?: boolean
-  order: number
+  startDate?: string
 }
 
 export type Slug = {
@@ -149,7 +149,24 @@ export type Experience = {
   title: string
   company: string
   period: string
-  description: string
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: "span"
+      _key: string
+    }>
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote"
+    listItem?: "bullet" | "number"
+    markDefs?: Array<{
+      href?: string
+      _type: "link"
+      _key: string
+    }>
+    level?: number
+    _type: "block"
+    _key: string
+  }>
   order: number
 }
 
@@ -332,7 +349,24 @@ export type ExperiencesQueryResult = Array<{
   title: string
   company: string
   period: string
-  description: string
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: "span"
+      _key: string
+    }>
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal"
+    listItem?: "bullet" | "number"
+    markDefs?: Array<{
+      href?: string
+      _type: "link"
+      _key: string
+    }>
+    level?: number
+    _type: "block"
+    _key: string
+  }>
   order: number
 }>
 // Variable: educationQuery
@@ -391,7 +425,7 @@ export type ProjectsQueryResult = Array<{
   githubUrl: string | null
   liveUrl: string | null
   featured: boolean | null
-  order: number
+  order: null
 }>
 
 // Query TypeMap
