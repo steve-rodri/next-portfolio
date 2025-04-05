@@ -76,7 +76,6 @@ export default defineType({
       title: "Order",
       type: "number",
       description: "Lower numbers appear first",
-      validation: (Rule) => Rule.required(),
     }),
   ],
   orderings: [
