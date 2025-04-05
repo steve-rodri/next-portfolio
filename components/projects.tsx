@@ -103,26 +103,34 @@ export default function Projects({ projects = [] }: ProjectsProps) {
                     </div>
                   </CardContent>
                   <CardFooter className="flex justify-between">
-                    <Button variant="outline" size="sm" asChild>
-                      <Link
-                        href={project.githubUrl || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="mr-2 h-4 w-4" />
-                        Code
-                      </Link>
-                    </Button>
-                    <Button size="sm" asChild>
-                      <Link
-                        href={project.liveUrl || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Live Demo
-                      </Link>
-                    </Button>
+                    {project.githubUrl ? (
+                      <Button variant="outline" size="sm" asChild>
+                        <Link
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="mr-2 h-4 w-4" />
+                          Code
+                        </Link>
+                      </Button>
+                    ) : (
+                      <div></div>
+                    )}
+                    {project.liveUrl ? (
+                      <Button size="sm" asChild>
+                        <Link
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Live Demo
+                        </Link>
+                      </Button>
+                    ) : (
+                      <div></div>
+                    )}
                   </CardFooter>
                 </Card>
               </motion.div>
