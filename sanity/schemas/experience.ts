@@ -27,8 +27,8 @@ export default defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "text",
-      rows: 3,
+      type: "array",
+      of: [{ type: "block" }],
       validation: (Rule) => Rule.required(),
     }),
     defineField({

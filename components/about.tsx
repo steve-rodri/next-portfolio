@@ -11,6 +11,7 @@ import type {
   EducationQueryResult,
 } from "@/types/sanity"
 import { groupSkills } from "@/lib/groupSkills"
+import { PortableText } from "next-sanity"
 
 interface AboutProps {
   personalInfo: PersonalInfoQueryResult
@@ -116,7 +117,26 @@ export default function About({
                       </span>
                     </div>
                     <p className="text-muted-foreground mb-2">{exp.company}</p>
-                    <p>{exp.description}</p>
+                    <PortableText
+                      value={exp.description}
+                      components={{
+                        list: {
+                          bullet: ({ children }) => (
+                            <ul
+                              style={{
+                                listStyleType: "disc",
+                                marginLeft: "1.25rem",
+                              }}
+                            >
+                              {children}
+                            </ul>
+                          ),
+                        },
+                        listItem: {
+                          bullet: ({ children }) => <li>{children}</li>,
+                        },
+                      }}
+                    />
                   </CardContent>
                 </Card>
               </motion.div>
