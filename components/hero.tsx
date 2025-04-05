@@ -13,7 +13,6 @@ interface HeroProps {
 }
 
 export default function Hero({ personalInfo }: HeroProps) {
-  // Ensure personalInfo is defined
   if (!personalInfo) {
     return (
       <section className="relative py-20 md:py-32 overflow-hidden">
@@ -26,7 +25,6 @@ export default function Hero({ personalInfo }: HeroProps) {
 
   const { name, role, profileImage, socialLinks = [] } = personalInfo
 
-  // Helper function to get social link by platform
   const getSocialLink = (platform: string) => {
     return (
       socialLinks?.find(
@@ -94,29 +92,6 @@ export default function Hero({ personalInfo }: HeroProps) {
               </Link>
             </div>
           </motion.div>
-          <motion.div
-            className="flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="relative aspect-square overflow-hidden rounded-full border-4 border-primary/20 w-[280px] h-[280px] md:w-[400px] md:h-[400px]">
-              {profileImage?.asset?._ref ? (
-                <Image
-                  src={urlFor(profileImage).url() || "/placeholder.svg"}
-                  alt={profileImage.alt || name}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <img
-                  src="/placeholder.svg?height=400&width=400"
-                  alt={name}
-                  className="object-cover"
-                />
-              )}
-            </div>
-          </motion.div>
         </div>
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
           <Link href="#about">
@@ -128,5 +103,39 @@ export default function Hero({ personalInfo }: HeroProps) {
         </div>
       </div>
     </section>
+  )
+}
+
+const ProfileImage = ({
+  profileImage,
+  name,
+}: {
+  profileImage: NonNullable<PersonalInfoQueryResult>["profileImage"]
+  name: string
+}) => {
+  return (
+    <motion.div
+      className="flex items-center justify-center"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+    >
+      <div className="relative aspect-square overflow-hidden rounded-full border-4 border-primary/20 w-[280px] h-[280px] md:w-[400px] md:h-[400px]">
+        {profileImage?.asset?._ref ? (
+          <Image
+            src={urlFor(profileImage).url() || "/placeholder.svg"}
+            alt={profileImage.alt || name}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <img
+            src="/placeholder.svg?height=400&width=400"
+            alt={name}
+            className="object-cover"
+          />
+        )}
+      </div>
+    </motion.div>
   )
 }
