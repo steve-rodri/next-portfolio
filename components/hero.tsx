@@ -23,7 +23,7 @@ export default function Hero({ personalInfo }: HeroProps) {
     )
   }
 
-  const { name, role, profileImage, socialLinks = [] } = personalInfo
+  const { name, role, socialLinks = [] } = personalInfo
 
   const getSocialLink = (platform: string) => {
     return (
@@ -80,16 +80,16 @@ export default function Hero({ personalInfo }: HeroProps) {
                   <span className="sr-only">LinkedIn</span>
                 </Button>
               </Link>
-              <Link
-                href={getSocialLink("twitter")}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="ghost" size="icon">
-                  <Twitter className="h-5 w-5" />
-                  <span className="sr-only">Twitter</span>
-                </Button>
-              </Link>
+              {/* <Link */}
+              {/*   href={getSocialLink("twitter")} */}
+              {/*   target="_blank" */}
+              {/*   rel="noopener noreferrer" */}
+              {/* > */}
+              {/*   <Button variant="ghost" size="icon"> */}
+              {/*     <Twitter className="h-5 w-5" /> */}
+              {/*     <span className="sr-only">Twitter</span> */}
+              {/*   </Button> */}
+              {/* </Link> */}
             </div>
           </motion.div>
         </div>
