@@ -2,7 +2,6 @@
 
 import type React from "react"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import {
@@ -19,16 +18,29 @@ import { Mail, MapPin, Phone } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import type { PersonalInfoQueryResult } from "@/types/sanity"
 import { submitContactForm } from "@/lib/queries"
+import { useForm, Controller } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 interface ContactProps {
   personalInfo: PersonalInfoQueryResult
 }
 
+const contactFormSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  subject: z.string().min(1, "Subject is required"),
+  message: z.string().min(1, "Message is required"),
+})
+
+type ContactFormData = z.infer<typeof contactFormSchema>
+
 export default function Contact({ personalInfo }: ContactProps) {
   const { toast } = useToast()
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { handleSubmit, control, reset, formState } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+  })
 
-  // Ensure personalInfo is defined
   if (!personalInfo) {
     return (
       <section id="contact" className="py-16 md:py-24 bg-muted/40">
@@ -39,19 +51,25 @@ export default function Contact({ personalInfo }: ContactProps) {
     )
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+  const onSubmit = async (data: ContactFormData) => {
+    const response = await submitContactForm({ data })
 
-    await submitContactForm({ data: values })
+    if (response?.success) {
+      toast({
+        title: "Message sent!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      })
+    }
 
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    })
+    if (response && !response.success) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "There was an error sending your message.",
+      })
+    }
 
-    setIsSubmitting(false)
-    e.currentTarget.reset()
+    reset()
   }
 
   return (
@@ -140,51 +158,99 @@ export default function Contact({ personalInfo }: ContactProps) {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   <div className="grid gap-2">
                     <Label htmlFor="name">Name</Label>
-                    <Input
-                      id="name"
+                    <Controller
                       name="name"
-                      required
-                      placeholder="Your name"
+                      control={control}
+                      defaultValue=""
+                      render={({ field }) => (
+                        <Input
+                          {...field}
+                          id="name"
+                          required
+                          placeholder="Your name"
+                        />
+                      )}
                     />
+                    {formState.errors.name && (
+                      <p className="text-red-500">
+                        {formState.errors.name.message}
+                      </p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
+                    <Controller
                       name="email"
-                      type="email"
-                      required
-                      placeholder="Your email address"
+                      control={control}
+                      defaultValue=""
+                      render={({ field }) => (
+                        <Input
+                          {...field}
+                          id="email"
+                          type="email"
+                          required
+                          placeholder="Your email address"
+                        />
+                      )}
                     />
+                    {formState.errors.email && (
+                      <p className="text-red-500">
+                        {formState.errors.email.message}
+                      </p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="subject">Subject</Label>
-                    <Input
-                      id="subject"
+                    <Controller
                       name="subject"
-                      required
-                      placeholder="Subject of your message"
+                      control={control}
+                      defaultValue=""
+                      render={({ field }) => (
+                        <Input
+                          {...field}
+                          id="subject"
+                          required
+                          placeholder="Subject of your message"
+                        />
+                      )}
                     />
+                    {formState.errors.subject && (
+                      <p className="text-red-500">
+                        {formState.errors.subject.message}
+                      </p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
+                    <Controller
                       name="message"
-                      required
-                      placeholder="Your message"
-                      className="min-h-[120px]"
+                      control={control}
+                      defaultValue=""
+                      render={({ field }) => (
+                        <Textarea
+                          {...field}
+                          id="message"
+                          required
+                          placeholder="Your message"
+                          className="min-h-[120px]"
+                        />
+                      )}
                     />
+                    {formState.errors.message && (
+                      <p className="text-red-500">
+                        {formState.errors.message.message}
+                      </p>
+                    )}
                   </div>
                   <Button
                     type="submit"
                     className="w-full"
-                    disabled={isSubmitting}
+                    disabled={formState.isSubmitting}
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {formState.isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>
