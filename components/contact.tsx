@@ -18,6 +18,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, Phone } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import type { PersonalInfoQueryResult } from "@/types/sanity"
+import { submitContactForm } from "@/lib/queries"
 
 interface ContactProps {
   personalInfo: PersonalInfoQueryResult
@@ -42,8 +43,7 @@ export default function Contact({ personalInfo }: ContactProps) {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await submitContactForm({ data: values })
 
     toast({
       title: "Message sent!",

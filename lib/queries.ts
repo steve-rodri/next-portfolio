@@ -1,3 +1,4 @@
+import axios from "axios"
 import {
   EducationQueryResult,
   ExperiencesQueryResult,
@@ -140,5 +141,22 @@ export async function getProjects() {
   } catch (error) {
     console.error("Error fetching projects:", error)
     return defaultProjects
+  }
+}
+
+export const submitContactForm = async ({ data }: { data: any }) => {
+  try {
+    const resp = await axios({
+      method: "POST",
+      url: `https://formcarry.com/s/ls4AfO00EbN`,
+      data,
+      headers: {
+        Accept: "application/json",
+      },
+    })
+    if (resp.status === 200) return { success: true }
+  } catch (e) {
+    console.log(e)
+    return { success: false }
   }
 }
