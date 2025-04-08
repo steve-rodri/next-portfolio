@@ -11,6 +11,9 @@ import {
   getProjects,
 } from "@/lib/queries"
 
+// --- TEMPORARILY ADD THIS LINE TO DISABLE CACHING ---
+export const dynamic = "force-dynamic"
+
 export default async function Home() {
   try {
     // Fetch data from Sanity with error handling
