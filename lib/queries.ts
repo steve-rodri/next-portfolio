@@ -124,7 +124,8 @@ export const projectsQuery = groq`
     technologies[]->{
       _id,
       name,
-      category
+      category,
+      featured
     },
     githubUrl,
     liveUrl,

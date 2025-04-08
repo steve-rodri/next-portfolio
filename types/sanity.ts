@@ -380,7 +380,7 @@ export type EducationQueryResult = Array<{
   order: number
 }>
 // Variable: projectsQuery
-// Query: *[_type == "project"] | order(order asc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category    },    githubUrl,    liveUrl,    featured,    "order": order  }
+// Query: *[_type == "project"] | order(startDate desc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category,      featured    },    githubUrl,    liveUrl,    featured,    "order": order  }
 export type ProjectsQueryResult = Array<{
   _id: string
   title: string
@@ -421,6 +421,7 @@ export type ProjectsQueryResult = Array<{
     _id: string
     name: string
     category: "Backend" | "Design" | "Frontend" | "Other" | "Tools"
+    featured: boolean
   }>
   githubUrl: string | null
   liveUrl: string | null
@@ -436,6 +437,6 @@ declare module "@sanity/client" {
     '\n  *[_type == "skill"] {\n    _id,\n    name,\n    featured,\n    level,\n    category\n  }\n  | order(category asc, featured desc, name asc)\n': SkillsQueryResult
     '\n  *[_type == "experience"] | order(order asc) {\n    _id,\n    title,\n    company,\n    period,\n    description,\n    order\n  }\n': ExperiencesQueryResult
     '\n  *[_type == "education"] | order(order asc) {\n    _id,\n    degree,\n    institution,\n    period,\n    description,\n    order\n  }\n': EducationQueryResult
-    '\n  *[_type == "project"] | order(order asc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category\n    },\n    githubUrl,\n    liveUrl,\n    featured,\n    "order": order\n  }\n': ProjectsQueryResult
+    '\n  *[_type == "project"] | order(startDate desc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    featured,\n    "order": order\n  }\n': ProjectsQueryResult
   }
 }

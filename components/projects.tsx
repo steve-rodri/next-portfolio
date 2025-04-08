@@ -96,7 +96,12 @@ export default function Projects({ projects = [] }: ProjectsProps) {
                   <CardContent className="flex-grow">
                     <div className="flex flex-wrap gap-2">
                       {project.technologies
-                        ?.sort((a, b) => a.name.localeCompare(b.name))
+                        ?.sort((a, b) => {
+                          if (a.featured === b.featured) {
+                            return a.name.localeCompare(b.name)
+                          }
+                          return a.featured ? -1 : 1
+                        })
                         .map((tech, tagIndex) => (
                           <Badge key={tagIndex} variant="secondary">
                             {tech.name}
