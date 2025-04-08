@@ -95,11 +95,13 @@ export default function Projects({ projects = [] }: ProjectsProps) {
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies?.map((tech, tagIndex) => (
-                        <Badge key={tagIndex} variant="secondary">
-                          {tech.name}
-                        </Badge>
-                      ))}
+                      {project.technologies
+                        ?.sort((a, b) => a.name.localeCompare(b.name))
+                        .map((tech, tagIndex) => (
+                          <Badge key={tagIndex} variant="secondary">
+                            {tech.name}
+                          </Badge>
+                        ))}
                     </div>
                   </CardContent>
                   <CardFooter className="flex justify-between">
