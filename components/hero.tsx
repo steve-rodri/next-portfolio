@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { ArrowDown, FileText, Github, Linkedin, Twitter } from "lucide-react"
+import { ArrowDown, Github, Linkedin, Twitter } from "lucide-react"
 import Link from "next/link"
 import { urlFor } from "@/lib/sanity"
 import type { PersonalInfoQueryResult } from "@/types/sanity"
@@ -57,16 +57,6 @@ export default function Hero({ personalInfo }: HeroProps) {
               </Button>
               <Button variant="outline" size="lg" asChild>
                 <Link href="#contact">Contact Me</Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <a
-                  href="/Steven_Rodriguez_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FileText className="mr-2 h-4 w-4" />
-                  Resume
-                </a>
               </Button>
             </div>
             <div className="flex items-center gap-4 mt-6">
