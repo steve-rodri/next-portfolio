@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-01T12:45:00Z",
+  "title": "Design System: Steve Rodriguez — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "graphite": { "role": "neutral", "displayName": "Graphite", "canonical": "oklch(17% 0.004 80)", "tonalRamp": ["oklch(15% 0.004 80)", "oklch(26% 0.004 80)", "oklch(37% 0.004 80)", "oklch(48% 0.004 80)", "oklch(60% 0.004 80)", "oklch(72% 0.004 80)", "oklch(84% 0.004 80)", "oklch(95% 0.004 80)"] },
+      "graphite-inset": { "role": "neutral", "displayName": "Graphite Inset", "canonical": "#1B1A19" },
+      "graphite-pressed": { "role": "neutral", "displayName": "Graphite Pressed", "canonical": "#232221" },
+      "graphite-card": { "role": "neutral", "displayName": "Graphite Card", "canonical": "#191817" },
+      "graphite-band": { "role": "neutral", "displayName": "Graphite Band", "canonical": "#0B0A09" },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "oklch(94.5% 0.003 90)", "tonalRamp": ["oklch(15% 0.003 90)", "oklch(26% 0.003 90)", "oklch(37% 0.003 90)", "oklch(48% 0.003 90)", "oklch(60% 0.003 90)", "oklch(72% 0.003 90)", "oklch(84% 0.003 90)", "oklch(95% 0.003 90)"] },
+      "ink-muted": { "role": "neutral", "displayName": "Ink Muted", "canonical": "#A3A19E" },
+      "ink-faint": { "role": "neutral", "displayName": "Ink Faint", "canonical": "#66645F" },
+      "ink-strong": { "role": "neutral", "displayName": "Ink Strong", "canonical": "#EDEFF2" },
+      "line": { "role": "neutral", "displayName": "Rule", "canonical": "oklch(24% 0.004 80)", "tonalRamp": ["oklch(15% 0.004 80)", "oklch(24% 0.004 80)", "oklch(33% 0.004 80)", "oklch(44% 0.004 80)", "oklch(56% 0.004 80)", "oklch(68% 0.004 80)", "oklch(82% 0.004 80)", "oklch(95% 0.004 80)"] },
+      "line-strong": { "role": "neutral", "displayName": "Rule Strong", "canonical": "#383531" },
+      "blueprint": { "role": "primary", "displayName": "Blueprint", "canonical": "oklch(60% 0.11 268)", "tonalRamp": ["oklch(15% 0.11 268)", "oklch(27% 0.11 268)", "oklch(38% 0.11 268)", "oklch(49% 0.11 268)", "oklch(60% 0.11 268)", "oklch(72% 0.11 268)", "oklch(84% 0.11 268)", "oklch(95% 0.06 268)"] },
+      "blueprint-bright": { "role": "primary", "displayName": "Blueprint Bright", "canonical": "#7D9ADB" },
+      "blueprint-foreground": { "role": "primary", "displayName": "Blueprint Paper", "canonical": "#F4F7FF" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Detail-page titles only; 34px at ≤760px." },
+      "headline": { "displayName": "Headline", "purpose": "Rail name (30px, stacked) and featured card titles (26px)." },
+      "title": { "displayName": "Title", "purpose": "Group headers inside sections (Stack rows)." },
+      "body": { "displayName": "Body", "purpose": "Prose at 14–16px; measures capped at 52–64ch." },
+      "label": { "displayName": "Label (Mono)", "purpose": "All annotations. Eyebrows: 10.5px, +0.14em, UPPERCASE. Metadata: 11–12px, lowercase." }
+    },
+    "motion": [
+      { "name": "transition-standard", "value": "120ms ease-out", "purpose": "The only motion in the system: color and border-color state changes. No transforms." }
+    ],
+    "breakpoints": [
+      { "name": "narrow", "value": "max 960px" },
+      { "name": "tight", "value": "max 760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Blueprint-filled action; the strongest element on any screen.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Download résumé</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #5C7FCC; color: #F4F7FF; padding: 9px 14px; border-radius: 3px; font-family: 'Instrument Sans', 'Helvetica Neue', sans-serif; font-size: 14px; font-weight: 500; text-decoration: none; transition: background-color 120ms ease-out; } .ds-btn-primary:hover { background: #7D9ADB; } .ds-btn-primary:focus-visible { outline: 1px solid #7D9ADB; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "1px-ruled secondary action; hover shifts border and text to blueprint.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">View App ↗︎</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #EFEEED; border: 1px solid #383531; padding: 9px 14px; border-radius: 3px; font-family: 'Instrument Sans', 'Helvetica Neue', sans-serif; font-size: 14px; text-decoration: none; transition: color 120ms ease-out, border-color 120ms ease-out; } .ds-btn-ghost:hover { border-color: #5C7FCC; color: #7D9ADB; } .ds-btn-ghost:focus-visible { outline: 1px solid #7D9ADB; outline-offset: 2px; }"
+    },
+    {
+      "name": "Tag Pill",
+      "kind": "chip",
+      "refersTo": "tag-pill",
+      "description": "Lowercase mono technology tag; the only pill radius in the system.",
+      "html": "<span class=\"ds-tag\">react native</span> <span class=\"ds-tag\">convex</span> <span class=\"ds-tag\">typescript</span>",
+      "css": ".ds-tag { display: inline-block; background: #1B1A19; color: #A3A19E; border: 1px solid #272524; border-radius: 999px; padding: 3px 11px; font-family: 'Geist Mono', monospace; font-size: 11px; text-transform: lowercase; }"
+    },
+    {
+      "name": "Section Header",
+      "kind": "custom",
+      "description": "The signature structural element: mono uppercase eyebrow plus a 1px hairline filling the row.",
+      "html": "<div class=\"ds-section-header\"><span class=\"ds-section-header-label\">Featured work</span><span class=\"ds-section-header-rule\"></span></div>",
+      "css": ".ds-section-header { display: flex; align-items: baseline; gap: 14px; width: 100%; } .ds-section-header-label { font-family: 'Geist Mono', monospace; font-size: 10.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #66645F; white-space: nowrap; } .ds-section-header-rule { height: 1px; flex: 1; background: #272524; align-self: center; }"
+    },
+    {
+      "name": "Rail Nav Item",
+      "kind": "nav",
+      "description": "Nav row with a mono count in the margin; hover shifts the label to blueprint.",
+      "html": "<nav class=\"ds-rail-nav\"><a href=\"#\" class=\"ds-rail-nav-item is-active\"><span>Featured work</span><span class=\"ds-rail-nav-count\">05</span></a><a href=\"#\" class=\"ds-rail-nav-item\"><span>Other work</span><span class=\"ds-rail-nav-count\">13</span></a><a href=\"#\" class=\"ds-rail-nav-item\"><span>About</span><span class=\"ds-rail-nav-count\">—</span></a></nav>",
+      "css": ".ds-rail-nav { display: flex; flex-direction: column; gap: 9px; width: 240px; } .ds-rail-nav-item { display: flex; justify-content: space-between; align-items: baseline; color: #A3A19E; font-family: 'Instrument Sans', 'Helvetica Neue', sans-serif; font-size: 14px; text-decoration: none; transition: color 120ms ease-out; } .ds-rail-nav-item.is-active { color: #EFEEED; } .ds-rail-nav-item:hover { color: #7D9ADB; } .ds-rail-nav-count { font-family: 'Geist Mono', monospace; font-size: 11px; color: #66645F; }"
+    },
+    {
+      "name": "Ledger Row",
+      "kind": "custom",
+      "description": "Other-work table row: name, muted description, right-aligned utility links.",
+      "html": "<div class=\"ds-ledger-row\"><span class=\"ds-ledger-name\">Minecraft Locations</span><span class=\"ds-ledger-desc\">Save your favorite places so you can get back to them</span><span class=\"ds-ledger-links\"><a href=\"#\" class=\"ds-ledger-link-muted\">Code ↗︎</a><a href=\"#\" class=\"ds-ledger-link-accent\">Site ↗︎</a></span></div>",
+      "css": ".ds-ledger-row { display: flex; align-items: baseline; gap: 16px; width: 100%; padding: 7px 0; border-bottom: 1px solid #272524; font-family: 'Instrument Sans', 'Helvetica Neue', sans-serif; font-size: 13.5px; } .ds-ledger-name { color: #EFEEED; flex: none; width: 160px; } .ds-ledger-desc { color: #A3A19E; flex: 1; } .ds-ledger-links { display: inline-flex; gap: 14px; } .ds-ledger-link-muted { color: #A3A19E; text-decoration: none; transition: color 120ms ease-out; } .ds-ledger-link-muted:hover { color: #EFEEED; text-decoration: underline; text-underline-offset: 3px; } .ds-ledger-link-accent { color: #5C7FCC; text-decoration: none; transition: color 120ms ease-out; } .ds-ledger-link-accent:hover { color: #7D9ADB; text-decoration: underline; text-underline-offset: 3px; }"
+    },
+    {
+      "name": "Stat Block",
+      "kind": "custom",
+      "description": "A ledger figure: display number over a faint mono label.",
+      "html": "<div class=\"ds-stat-row\"><div class=\"ds-stat\"><span class=\"ds-stat-value\">4,500+</span><span class=\"ds-stat-label\">riders in 3 months</span></div><div class=\"ds-stat\"><span class=\"ds-stat-value\">19</span><span class=\"ds-stat-label\">releases, weekly</span></div></div>",
+      "css": ".ds-stat-row { display: flex; gap: 40px; padding: 24px 0; border-bottom: 1px solid #272524; } .ds-stat { display: flex; flex-direction: column; gap: 3px; } .ds-stat-value { font-family: 'Instrument Sans', 'Helvetica Neue', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: #EFEEED; } .ds-stat-label { font-family: 'Geist Mono', monospace; font-size: 10.5px; color: #66645F; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Ledger",
+    "overview": "The site is a ledger: a calm, precise, confident accounting of shipped work. Every visual decision behaves like an entry in a well-kept book — ruled 1px lines instead of boxes and shadows, mono annotations in the margins (dates, counts, platforms), and one blueprint-blue ink reserved for the entries that act. The design's job is to make real evidence legible, never to decorate it; restraint is the craft, and the confidence comes from how little the system needs.\n\nThe room is warm-dark, not cold: graphite surfaces with a faint warm cast rather than neutral black, so long reading feels like a workshop at night rather than a terminal. Components are precise and quiet — nothing lifts, scales, or slides; state changes are exact 120ms shifts of color and border, felt more than seen.",
+    "keyCharacteristics": [
+      "Warm graphite dark surfaces; depth by tone and 1px rule, never shadow",
+      "A single hue on the page: blueprint blue, only where the reader can act",
+      "Instrument Sans for prose and display; Geist Mono for every annotation",
+      "Drafting-sharp radii (3px / 4px / pill-only-for-tags)",
+      "Typographic marks (↗︎, ·) instead of icons; no gradients, no emoji",
+      "Motion limited to 120ms ease-out color/border transitions"
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Blueprint is the only hue on any screen and it always means \"this acts.\" If an element doesn't link or submit, it doesn't get blue. No second accent exists; emphasis without action uses Ink against Ink Muted.", "section": "colors" },
+      { "name": "The Mono Margin Rule", "body": "Every piece of metadata — dates, counts, platforms, captions, section eyebrows, tag pills — is set in Geist Mono. ALL-CAPS belongs to eyebrows alone; every other mono annotation is lowercase. Prose is always sentence case.", "section": "typography" },
+      { "name": "The Borders-Do-The-Work Rule", "body": "No box-shadow exists anywhere in the system; depth is conveyed by 1px rules (#272524) and tonal steps of graphite — Inset above the page, Band below it. If a surface needs separating, it earns a hairline, not a glow.", "section": "elevation" },
+      { "name": "The 120ms Rule", "body": "Motion is limited to 120ms ease-out color/border transitions — hover is a shift of ink, not a movement.", "section": "components" }
+    ],
+    "dos": [
+      "Do keep Blueprint exclusively on elements that act (The One Accent Rule).",
+      "Do set every annotation in Geist Mono — lowercase unless it is a section eyebrow (The Mono Margin Rule).",
+      "Do hold motion to 120ms ease-out color/border transitions — hover is a shift of ink, not a movement (The 120ms Rule).",
+      "Do separate content with 1px rules (#272524) and tonal graphite steps; open every main-column section with the eyebrow + hairline header.",
+      "Do use ↗︎ for external links (always with U+FE0E appended — mobile browsers otherwise render the emoji glyph) and · as the inline separator, as text.",
+      "Do cap prose measures with ch units (52–64ch) and use text-wrap: pretty on multi-line prose.",
+      "Do let absent content collapse — hide a section rather than render a placeholder."
+    ],
+    "donts": [
+      "Don't use shadows, gradients, glows, or backdrop blur anywhere.",
+      "Don't transform on hover — no translate, scale, underline-grow, or opacity fades on state.",
+      "Don't introduce icons, icon fonts, or emoji; typographic marks only.",
+      "Don't add a second hue or use Blueprint decoratively on non-interactive elements.",
+      "Don't round anything beyond 4px except tag pills; never round scrollbars.",
+      "Don't set mono metadata in Title Case or ALL-CAPS outside eyebrows; prose stays sentence case."
+    ]
+  }
+}
