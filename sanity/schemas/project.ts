@@ -74,6 +74,17 @@ export default defineType({
       type: "url",
     }),
     defineField({
+      name: "liveLabel",
+      title: "Live Link Label",
+      type: "string",
+      options: {
+        list: ["View Site", "View App"],
+        layout: "radio",
+      },
+      description:
+        'Label for the live link on featured cards and the detail page. Defaults to "View Site".',
+    }),
+    defineField({
       name: "startDate",
       title: "Start Date",
       type: "date",

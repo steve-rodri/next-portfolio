@@ -369,6 +369,23 @@
         },
         "optional": true
       },
+      "liveLabel": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "View Site"
+            },
+            {
+              "type": "string",
+              "value": "View App"
+            }
+          ]
+        },
+        "optional": true
+      },
       "startDate": {
         "type": "objectAttribute",
         "value": {

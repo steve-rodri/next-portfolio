@@ -101,6 +101,7 @@ export const defaultProjects: ProjectsQueryResult = [
     ],
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
+    liveLabel: null,
     meta: null,
     highlight: null,
     hasDetail: false,

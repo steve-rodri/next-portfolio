@@ -7,6 +7,7 @@ import BodySection from "@/components/work/body-section"
 import CompactFooter from "@/components/work/compact-footer"
 import Screenshots from "@/components/work/screenshots"
 import StatsRow from "@/components/work/stats-row"
+import { liveLabel } from "@/lib/live-label"
 import { getPersonalInfo, getProjectBySlug } from "@/lib/queries"
 import { urlFor } from "@/lib/sanity"
 import type { ProjectDetail } from "@/types/portfolio"
@@ -100,7 +101,7 @@ export default async function WorkDetailPage({
               variant="primary"
               className="px-4 py-[9px] text-sm"
             >
-              View live ↗
+              {liveLabel(project)} ↗
             </ActionLink>
           )}
           <ActionLink href="/" variant="ghost" className="px-4 py-[9px] text-sm">

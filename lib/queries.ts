@@ -129,6 +129,7 @@ export const projectsQuery = groq`
     },
     githubUrl,
     liveUrl,
+    liveLabel,
     meta,
     highlight,
     "hasDetail": count(sections) > 0
@@ -164,6 +165,7 @@ export const homeQuery = groq`
       },
       githubUrl,
       liveUrl,
+      liveLabel,
       meta,
       highlight,
       "hasDetail": count(sections) > 0
@@ -197,6 +199,7 @@ export const projectBySlugQuery = groq`
     },
     githubUrl,
     liveUrl,
+    liveLabel,
     metaLine,
     stats[] { _key, value, label },
     sections[] { _key, heading, body },

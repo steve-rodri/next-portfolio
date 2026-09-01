@@ -2,6 +2,7 @@ import Image from "next/image"
 import ActionLink from "@/components/action-link"
 import SectionHeader from "@/components/section-header"
 import TagPill from "@/components/tag-pill"
+import { liveLabel } from "@/lib/live-label"
 import { urlFor } from "@/lib/sanity"
 import type { ProjectListItem } from "@/types/portfolio"
 
@@ -78,7 +79,7 @@ function FeaturedCard({ project }: { project: ProjectListItem }) {
                 variant="ghost"
                 className="px-[13px] py-[7px] text-[13.5px]"
               >
-                View live ↗
+                {liveLabel(project)} ↗
               </ActionLink>
             )}
           </div>

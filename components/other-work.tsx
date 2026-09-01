@@ -1,5 +1,6 @@
 import Image from "next/image"
 import SectionHeader from "@/components/section-header"
+import { shortLiveLabel } from "@/lib/live-label"
 import { urlFor } from "@/lib/sanity"
 import type { ProjectListItem } from "@/types/portfolio"
 
@@ -54,7 +55,7 @@ function Row({ project }: { project: ProjectListItem }) {
               rel="noopener noreferrer"
               className={accentLink}
             >
-              Live ↗
+              {shortLiveLabel(project)} ↗
             </a>
           )}
         </span>
