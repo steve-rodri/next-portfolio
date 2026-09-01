@@ -64,6 +64,7 @@ export type Project = {
   liveUrl?: string
   featured?: boolean
   startDate?: string
+  order?: number
   meta?: string
   highlight?: string
   metaLine?: string
@@ -488,7 +489,7 @@ export type EducationQueryResult = Array<{
   order: number
 }>
 // Variable: projectsQuery
-// Query: *[_type == "project"] | order(startDate desc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category,      featured    },    githubUrl,    liveUrl,    featured,    meta,    highlight,    "hasDetail": count(sections) > 0,    "order": order  }
+// Query: *[_type == "project"] | order(coalesce(order, 9999) asc, startDate desc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category,      featured    },    githubUrl,    liveUrl,    featured,    meta,    highlight,    "hasDetail": count(sections) > 0,    "order": order  }
 export type ProjectsQueryResult = Array<{
   _id: string
   title: string
@@ -544,7 +545,7 @@ export type ProjectsQueryResult = Array<{
   meta: string | null
   highlight: string | null
   hasDetail: boolean | null
-  order: null
+  order: number | null
 }>
 // Variable: projectBySlugQuery
 // Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    summary,    image,    technologies[]->{      _id,      name,      featured    },    githubUrl,    liveUrl,    metaLine,    stats[] { _key, value, label },    sections[] { _key, heading, body },    screenshots[] {      _key,      caption,      image,      "aspectRatio": image.asset->metadata.dimensions.aspectRatio    }  }
@@ -628,7 +629,7 @@ declare module "@sanity/client" {
     '\n  *[_type == "skill"] {\n    _id,\n    name,\n    featured,\n    level,\n    category\n  }\n  | order(category asc, featured desc, name asc)\n': SkillsQueryResult
     '\n  *[_type == "experience"] | order(order asc) {\n    _id,\n    title,\n    company,\n    period,\n    description,\n    order\n  }\n': ExperiencesQueryResult
     '\n  *[_type == "education"] | order(order asc) {\n    _id,\n    degree,\n    institution,\n    period,\n    description,\n    order\n  }\n': EducationQueryResult
-    '\n  *[_type == "project"] | order(startDate desc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    featured,\n    meta,\n    highlight,\n    "hasDetail": count(sections) > 0,\n    "order": order\n  }\n': ProjectsQueryResult
+    '\n  *[_type == "project"] | order(coalesce(order, 9999) asc, startDate desc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    featured,\n    meta,\n    highlight,\n    "hasDetail": count(sections) > 0,\n    "order": order\n  }\n': ProjectsQueryResult
     '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    summary,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    metaLine,\n    stats[] { _key, value, label },\n    sections[] { _key, heading, body },\n    screenshots[] {\n      _key,\n      caption,\n      image,\n      "aspectRatio": image.asset->metadata.dimensions.aspectRatio\n    }\n  }\n': ProjectBySlugQueryResult
   }
 }

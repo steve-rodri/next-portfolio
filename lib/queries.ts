@@ -114,7 +114,7 @@ export async function getEducation() {
 
 // Projects
 export const projectsQuery = groq`
-  *[_type == "project"] | order(startDate desc) {
+  *[_type == "project"] | order(coalesce(order, 9999) asc, startDate desc) {
     _id,
     title,
     slug,

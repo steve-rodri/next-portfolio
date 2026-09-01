@@ -87,6 +87,13 @@ export default defineType({
       description: "The date the project was started",
     }),
     defineField({
+      name: "order",
+      title: "Display Order",
+      type: "number",
+      description:
+        "Lower numbers appear first (featured cards and the other-work table). Projects without a value follow, newest first.",
+    }),
+    defineField({
       name: "meta",
       title: "Meta Annotation",
       type: "string",
@@ -159,6 +166,14 @@ export default defineType({
     }),
   ],
   orderings: [
+    {
+      title: "Display Order",
+      name: "displayOrder",
+      by: [
+        { field: "order", direction: "asc" },
+        { field: "startDate", direction: "desc" },
+      ],
+    },
     {
       title: "Start Date",
       name: "startDateAsc",

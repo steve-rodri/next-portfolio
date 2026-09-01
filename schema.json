@@ -383,6 +383,13 @@
         },
         "optional": true
       },
+      "order": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
       "meta": {
         "type": "objectAttribute",
         "value": {
