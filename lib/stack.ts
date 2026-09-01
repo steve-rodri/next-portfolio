@@ -7,7 +7,6 @@ export interface StackGroup {
 
 /** Display order and labels for the Stack section, per the design. */
 const GROUP_LABELS: Array<[category: string, label: string]> = [
-  ["Languages", "Languages"],
   ["Mobile", "Mobile"],
   ["Frontend", "Front end"],
   ["Backend", "Back end"],

@@ -165,7 +165,6 @@ export type Skill = {
   featured: boolean
   level?: "Beginner" | "Intermediate" | "Advanced" | "Expert"
   category:
-    | "Languages"
     | "Mobile"
     | "Frontend"
     | "Backend"
@@ -462,7 +461,6 @@ export type SkillsQueryResult = Array<{
     | "Backend"
     | "Design"
     | "Frontend"
-    | "Languages"
     | "Mobile"
     | "Other"
     | "Ship & verify"
@@ -550,7 +548,6 @@ export type ProjectsQueryResult = Array<{
       | "Backend"
       | "Design"
       | "Frontend"
-      | "Languages"
       | "Mobile"
       | "Other"
       | "Ship & verify"
@@ -610,7 +607,6 @@ export type HomeQueryResult = {
         | "Backend"
         | "Design"
         | "Frontend"
-        | "Languages"
         | "Mobile"
         | "Other"
         | "Ship & verify"
