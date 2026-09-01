@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import SectionHeader from "@/components/section-header"
 import { shortLiveLabel } from "@/lib/live-label"
 import { urlFor } from "@/lib/sanity"
@@ -25,6 +26,9 @@ function Thumb({ project }: { project: ProjectListItem }) {
 }
 
 function Row({ project }: { project: ProjectListItem }) {
+  const slug = project.slug?.current
+  const detailHref = project.hasDetail && slug ? `/work/${slug}` : null
+
   return (
     <tr className="border-b border-line last:border-b-0">
       <td className="w-[210px] py-[7px]">
@@ -36,8 +40,13 @@ function Row({ project }: { project: ProjectListItem }) {
       <td className="py-[7px] text-ink-muted tight:hidden">
         {project.summary}
       </td>
-      <td className="w-[150px] py-[7px] text-right">
+      <td className="w-[190px] py-[7px] text-right">
         <span className="inline-flex gap-3.5">
+          {detailHref && (
+            <Link href={detailHref} className={mutedLink}>
+              Read more
+            </Link>
+          )}
           {project.githubUrl && (
             <a
               href={project.githubUrl}
@@ -74,7 +83,7 @@ export default function OtherWork({
       <SectionHeader label="Other work" />
       <table className="w-full border-collapse text-[13.5px]">
         <caption className="sr-only">
-          Other projects, with links to code and live sites
+          Other projects, with links to details, code, and live sites
         </caption>
         <thead className="sr-only">
           <tr>
