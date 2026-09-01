@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Instrument_Sans, Geist_Mono } from "next/font/google"
 import "./globals.css"
 
@@ -13,6 +13,11 @@ const mono = Geist_Mono({
   weight: ["400", "500"],
   variable: "--font-mono",
 })
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#131211",
+}
 
 export const metadata: Metadata = {
   title: "Steve Rodriguez · Portfolio",

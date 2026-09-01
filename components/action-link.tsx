@@ -20,8 +20,9 @@ export default function ActionLink({
   children: React.ReactNode
 }) {
   const external = href.startsWith("http")
+  const staticFile = /\.[a-z0-9]+$/i.test(href)
   const base = `inline-flex items-center justify-center rounded-[3px] no-underline ${variants[variant]} ${className}`
-  if (external) {
+  if (external || staticFile) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={base}>
         {children}

@@ -56,9 +56,17 @@
   body {
     @apply bg-surface text-ink;
   }
+}
+
+@media (prefers-reduced-motion: no-preference) {
   html {
-    @apply scroll-smooth;
+    scroll-behavior: smooth;
   }
+}
+
+::selection {
+  background: #5c7fcc;
+  color: #0b0a09;
 }
 
 /* Keyboard focus: 1px blueprint-bright outline, offset off the element */
