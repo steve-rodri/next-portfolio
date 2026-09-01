@@ -1,33 +1,32 @@
+import { CATEGORY_LABELS, isCapability, type Skill } from "@/lib/skills"
 import type { SkillsQueryResult } from "@/types/sanity"
+
+export interface StackItem {
+  name: string
+  url: string | null
+}
 
 export interface StackGroup {
   label: string
-  items: string[]
+  items: StackItem[]
 }
 
-/** Display order and labels for the Stack section, per the design. */
-const GROUP_LABELS: Array<[category: string, label: string]> = [
-  ["Mobile", "Mobile"],
-  ["Frontend", "Front end"],
-  ["Backend", "Back end"],
-  ["Ship & verify", "Ship & verify"],
-  ["Tools", "Tools"],
-  ["Design", "Design"],
-  ["Other", "Other"],
-]
+function toItem(skill: Skill): StackItem {
+  return { name: skill.name, url: skill.url ?? null }
+}
 
-/** Groups featured skills into the design's Stack rows; empty groups drop out. */
+/** Groups featured technologies into the design's Stack rows; empty groups drop out. */
 export function buildStackGroups(skills: SkillsQueryResult): StackGroup[] {
-  const featured = skills.filter((skill) => skill.featured)
-  const byCategory = new Map<string, string[]>()
-  for (const skill of featured) {
+  const byCategory = new Map<string, StackItem[]>()
+  for (const skill of skills) {
+    if (!skill.featured || isCapability(skill)) continue
     const items = byCategory.get(skill.category) ?? []
-    items.push(skill.name)
+    items.push(toItem(skill))
     byCategory.set(skill.category, items)
   }
 
   const groups: StackGroup[] = []
-  for (const [category, label] of GROUP_LABELS) {
+  for (const [category, label] of CATEGORY_LABELS) {
     const items = byCategory.get(category)
     if (items?.length) groups.push({ label, items })
     byCategory.delete(category)

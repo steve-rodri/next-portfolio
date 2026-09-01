@@ -16,10 +16,10 @@ export default function StackSection({ skills }: { skills: SkillsQueryResult }) 
             key={group.label}
             className="grid grid-cols-[150px_1fr] items-baseline gap-4 tight:flex tight:flex-col tight:items-start tight:gap-2"
           >
-            <h4 className="m-0 text-sm font-semibold">{group.label}</h4>
+            <h3 className="m-0 text-sm font-semibold">{group.label}</h3>
             <div className="flex flex-wrap gap-1.5">
               {group.items.map((item) => (
-                <TagPill key={item} label={item} />
+                <TagPill key={item.name} label={item.name} href={item.url} />
               ))}
             </div>
           </div>

@@ -48,8 +48,10 @@ export const skillsQuery = groq`
   *[_type == "skill"] {
     _id,
     name,
+    kind,
+    detail,
+    url,
     featured,
-    level,
     category
   }
   | order(category asc, featured desc, name asc)
@@ -125,7 +127,8 @@ export const projectsQuery = groq`
       _id,
       name,
       category,
-      featured
+      featured,
+      url
     },
     githubUrl,
     liveUrl,
@@ -161,7 +164,8 @@ export const homeQuery = groq`
         _id,
         name,
         category,
-        featured
+        featured,
+        url
       },
       githubUrl,
       liveUrl,
@@ -195,7 +199,8 @@ export const projectBySlugQuery = groq`
     technologies[]->{
       _id,
       name,
-      featured
+      featured,
+      url
     },
     githubUrl,
     liveUrl,

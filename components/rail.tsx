@@ -49,11 +49,13 @@ export default function Rail({
   personalInfo,
   experiences,
   featuredCount,
+  capabilityCount,
   otherCount,
 }: {
   personalInfo: NonNullable<PersonalInfoQueryResult>
   experiences: ExperiencesQueryResult
   featuredCount: number
+  capabilityCount: number
   otherCount: number
 }) {
   return (
@@ -87,6 +89,14 @@ export default function Rail({
           count={padCount(otherCount)}
           tone="muted"
         />
+        {capabilityCount > 0 && (
+          <NavItem
+            href="#capabilities"
+            label="Capabilities"
+            count={padCount(capabilityCount)}
+            tone="muted"
+          />
+        )}
         <NavItem href="#stack" label="Stack" count="—" tone="muted" />
         <NavItem href="#about" label="About" count="—" tone="muted" />
       </nav>

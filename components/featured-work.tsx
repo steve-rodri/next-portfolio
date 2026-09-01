@@ -66,7 +66,7 @@ function FeaturedCard({
         )}
         <div className="mt-1.5 flex flex-wrap gap-1.5">
           {sortTechnologies(project.technologies).map((tech) => (
-            <TagPill key={tech._id} label={tech.name} />
+            <TagPill key={tech._id} label={tech.name} href={tech.url} />
           ))}
         </div>
         {(showReadMore || project.liveUrl) && (

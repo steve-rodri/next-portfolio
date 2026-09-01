@@ -1,9 +1,11 @@
 import AboutSection from "@/components/about-section"
+import CapabilitiesSection from "@/components/capabilities-section"
 import ContactBand from "@/components/contact-band"
 import FeaturedWork from "@/components/featured-work"
 import OtherWork from "@/components/other-work"
 import Rail from "@/components/rail"
 import StackSection from "@/components/stack-section"
+import { buildCapabilities } from "@/lib/capabilities"
 import {
   getExperiences,
   getFeaturedProjects,
@@ -26,6 +28,7 @@ export default async function Home() {
 
   const featuredIds = new Set(featured.map((project) => project._id))
   const other = projects.filter((project) => !featuredIds.has(project._id))
+  const capabilityCount = buildCapabilities(skills).length
 
   return (
     <div className="grid min-h-screen grid-cols-[324px_1fr] narrow:block">

@@ -69,7 +69,7 @@ export default async function WorkDetailPage({
           )}
           <span className="flex flex-wrap gap-1.5">
             {sortTechnologies(project.technologies).map((tech) => (
-              <TagPill key={tech._id} label={tech.name} size="sm" />
+              <TagPill key={tech._id} label={tech.name} href={tech.url} size="sm" />
             ))}
           </span>
         </div>

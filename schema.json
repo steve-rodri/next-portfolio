@@ -1119,6 +1119,37 @@
         },
         "optional": false
       },
+      "kind": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "technology"
+            },
+            {
+              "type": "string",
+              "value": "capability"
+            }
+          ]
+        },
+        "optional": false
+      },
+      "detail": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "url": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "featured": {
         "type": "objectAttribute",
         "value": {
@@ -1156,6 +1187,10 @@
         "value": {
           "type": "union",
           "of": [
+            {
+              "type": "string",
+              "value": "Languages"
+            },
             {
               "type": "string",
               "value": "Mobile"

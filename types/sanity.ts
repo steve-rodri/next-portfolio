@@ -162,9 +162,13 @@ export type Skill = {
   _updatedAt: string
   _rev: string
   name: string
+  kind: "technology" | "capability"
+  detail?: string
+  url?: string
   featured: boolean
   level?: "Beginner" | "Intermediate" | "Advanced" | "Expert"
   category:
+    | "Languages"
     | "Mobile"
     | "Frontend"
     | "Backend"
@@ -451,16 +455,19 @@ export type PersonalInfoQueryResult = {
   }> | null
 } | null
 // Variable: skillsQuery
-// Query: *[_type == "skill"] {    _id,    name,    featured,    level,    category  }  | order(category asc, featured desc, name asc)
+// Query: *[_type == "skill"] {    _id,    name,    kind,    detail,    url,    featured,    category  }  | order(category asc, featured desc, name asc)
 export type SkillsQueryResult = Array<{
   _id: string
   name: string
+  kind: "capability" | "technology"
+  detail: string | null
+  url: string | null
   featured: boolean
-  level: "Advanced" | "Beginner" | "Expert" | "Intermediate" | null
   category:
     | "Backend"
     | "Design"
     | "Frontend"
+    | "Languages"
     | "Mobile"
     | "Other"
     | "Ship & verify"
@@ -504,7 +511,7 @@ export type EducationQueryResult = Array<{
   order: number
 }>
 // Variable: projectsQuery
-// Query: *[_type == "project"] | order(startDate desc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category,      featured    },    githubUrl,    liveUrl,    liveLabel,    meta,    highlight,    "hasDetail": count(sections) > 0  }
+// Query: *[_type == "project"] | order(startDate desc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category,      featured,      url    },    githubUrl,    liveUrl,    liveLabel,    meta,    highlight,    "hasDetail": count(sections) > 0  }
 export type ProjectsQueryResult = Array<{
   _id: string
   title: string
@@ -548,11 +555,13 @@ export type ProjectsQueryResult = Array<{
       | "Backend"
       | "Design"
       | "Frontend"
+      | "Languages"
       | "Mobile"
       | "Other"
       | "Ship & verify"
       | "Tools"
     featured: boolean
+    url: string | null
   }>
   githubUrl: string | null
   liveUrl: string | null
@@ -562,7 +571,7 @@ export type ProjectsQueryResult = Array<{
   hasDetail: boolean | null
 }>
 // Variable: homeQuery
-// Query: *[_type == "home"][0] {    featuredProjects[]->{      _id,      title,      slug,      summary,      description,      image,      technologies[]->{        _id,        name,        category,        featured      },      githubUrl,      liveUrl,      liveLabel,      meta,      highlight,      "hasDetail": count(sections) > 0    }  }
+// Query: *[_type == "home"][0] {    featuredProjects[]->{      _id,      title,      slug,      summary,      description,      image,      technologies[]->{        _id,        name,        category,        featured,        url      },      githubUrl,      liveUrl,      liveLabel,      meta,      highlight,      "hasDetail": count(sections) > 0    }  }
 export type HomeQueryResult = {
   featuredProjects: Array<{
     _id: string
@@ -607,11 +616,13 @@ export type HomeQueryResult = {
         | "Backend"
         | "Design"
         | "Frontend"
+        | "Languages"
         | "Mobile"
         | "Other"
         | "Ship & verify"
         | "Tools"
       featured: boolean
+      url: string | null
     }>
     githubUrl: string | null
     liveUrl: string | null
@@ -622,7 +633,7 @@ export type HomeQueryResult = {
   }> | null
 } | null
 // Variable: projectBySlugQuery
-// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    summary,    image,    technologies[]->{      _id,      name,      featured    },    githubUrl,    liveUrl,    liveLabel,    metaLine,    stats[] { _key, value, label },    sections[] { _key, heading, body },    screenshots[] {      _key,      caption,      image,      "aspectRatio": image.asset->metadata.dimensions.aspectRatio    }  }
+// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    summary,    image,    technologies[]->{      _id,      name,      featured,      url    },    githubUrl,    liveUrl,    liveLabel,    metaLine,    stats[] { _key, value, label },    sections[] { _key, heading, body },    screenshots[] {      _key,      caption,      image,      "aspectRatio": image.asset->metadata.dimensions.aspectRatio    }  }
 export type ProjectBySlugQueryResult = {
   _id: string
   title: string
@@ -645,6 +656,7 @@ export type ProjectBySlugQueryResult = {
     _id: string
     name: string
     featured: boolean
+    url: string | null
   }>
   githubUrl: string | null
   liveUrl: string | null
@@ -701,11 +713,11 @@ import "@sanity/client"
 declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[_type == "personalInfo"][0] {\n    _id,\n    name,\n    role,\n    tagline,\n    bio,\n    about,\n    email,\n    phone,\n    location,\n    profileImage,\n    socialLinks[] {\n      platform,\n      url\n    }\n  }\n': PersonalInfoQueryResult
-    '\n  *[_type == "skill"] {\n    _id,\n    name,\n    featured,\n    level,\n    category\n  }\n  | order(category asc, featured desc, name asc)\n': SkillsQueryResult
+    '\n  *[_type == "skill"] {\n    _id,\n    name,\n    kind,\n    detail,\n    url,\n    featured,\n    category\n  }\n  | order(category asc, featured desc, name asc)\n': SkillsQueryResult
     '\n  *[_type == "experience"] | order(order asc) {\n    _id,\n    title,\n    company,\n    period,\n    description,\n    order\n  }\n': ExperiencesQueryResult
     '\n  *[_type == "education"] | order(order asc) {\n    _id,\n    degree,\n    institution,\n    period,\n    description,\n    order\n  }\n': EducationQueryResult
-    '\n  *[_type == "project"] | order(startDate desc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    liveLabel,\n    meta,\n    highlight,\n    "hasDetail": count(sections) > 0\n  }\n': ProjectsQueryResult
-    '\n  *[_type == "home"][0] {\n    featuredProjects[]->{\n      _id,\n      title,\n      slug,\n      summary,\n      description,\n      image,\n      technologies[]->{\n        _id,\n        name,\n        category,\n        featured\n      },\n      githubUrl,\n      liveUrl,\n      liveLabel,\n      meta,\n      highlight,\n      "hasDetail": count(sections) > 0\n    }\n  }\n': HomeQueryResult
-    '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    summary,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    liveLabel,\n    metaLine,\n    stats[] { _key, value, label },\n    sections[] { _key, heading, body },\n    screenshots[] {\n      _key,\n      caption,\n      image,\n      "aspectRatio": image.asset->metadata.dimensions.aspectRatio\n    }\n  }\n': ProjectBySlugQueryResult
+    '\n  *[_type == "project"] | order(startDate desc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category,\n      featured,\n      url\n    },\n    githubUrl,\n    liveUrl,\n    liveLabel,\n    meta,\n    highlight,\n    "hasDetail": count(sections) > 0\n  }\n': ProjectsQueryResult
+    '\n  *[_type == "home"][0] {\n    featuredProjects[]->{\n      _id,\n      title,\n      slug,\n      summary,\n      description,\n      image,\n      technologies[]->{\n        _id,\n        name,\n        category,\n        featured,\n        url\n      },\n      githubUrl,\n      liveUrl,\n      liveLabel,\n      meta,\n      highlight,\n      "hasDetail": count(sections) > 0\n    }\n  }\n': HomeQueryResult
+    '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    summary,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      featured,\n      url\n    },\n    githubUrl,\n    liveUrl,\n    liveLabel,\n    metaLine,\n    stats[] { _key, value, label },\n    sections[] { _key, heading, body },\n    screenshots[] {\n      _key,\n      caption,\n      image,\n      "aspectRatio": image.asset->metadata.dimensions.aspectRatio\n    }\n  }\n': ProjectBySlugQueryResult
   }
 }
