@@ -15,9 +15,9 @@ const mono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Steve Rodriguez — Portfolio",
+  title: "Steve Rodriguez · Portfolio",
   description:
-    "Portfolio of Steve Rodriguez, senior full-stack software engineer — featured work, projects, and how to get in touch.",
+    "Portfolio of Steve Rodriguez, senior full-stack software engineer. Featured work, projects, and how to get in touch.",
 }
 
 export default function RootLayout({

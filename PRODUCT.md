@@ -35,6 +35,7 @@ Steve Rodriguez's personal portfolio at steverodri.com. Primary outcome: senior 
 ## Brand Commitments
 
 - Name: Steve Rodriguez. Voice: honest, plain, deflated — no résumé-speak, no inflated claims. New claims must be checked with Steve before publishing; he has corrected several.
+- No em dashes in public-facing copy (site content, meta descriptions, résumé). Use commas, colons, parentheses, or a new sentence instead. En dashes in date ranges (2026–now) are fine.
 - Factually banned framings: "built the app that ran the business" (false — the Brilliance CRM was a hobby project), "co-founder of Benzinger Media" (false — he takes work from his uncle), RIDR as a "cycling app" (it is a mountain biking app).
 - Personal history that is safe to use: self-taught via an Ironman-inspired Excel home-gym tracker; General Assembly Web Development Immersive; two years of paid freelance work before the first job.
 
