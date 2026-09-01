@@ -73,6 +73,16 @@ export default function OtherWork({
     <section id="other" className="flex flex-col gap-3.5 p-10 tight:px-6">
       <SectionHeader label="Other work" />
       <table className="w-full border-collapse text-[13.5px]">
+        <caption className="sr-only">
+          Other projects, with links to code and live sites
+        </caption>
+        <thead className="sr-only">
+          <tr>
+            <th scope="col">Project</th>
+            <th scope="col">Description</th>
+            <th scope="col">Links</th>
+          </tr>
+        </thead>
         <tbody>
           {projects.map((project) => (
             <Row key={project._id} project={project} />

@@ -16,9 +16,9 @@ export default function BodySection({ section }: { section: ProjectSection }) {
   return (
     <section className="flex flex-col gap-3 pt-8">
       {section.heading && (
-        <span className="font-mono text-[10.5px] font-medium uppercase tracking-[.14em] text-ink-faint">
+        <h2 className="m-0 font-mono text-[10.5px] font-medium uppercase tracking-[.14em] text-ink-faint">
           {section.heading}
-        </span>
+        </h2>
       )}
       {section.body && (
         <PortableText

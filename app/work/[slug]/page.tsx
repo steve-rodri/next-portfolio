@@ -42,7 +42,7 @@ export default async function WorkDetailPage({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="mx-auto w-full max-w-[760px] flex-1 px-6">
+      <main id="content" className="mx-auto w-full max-w-[760px] flex-1 px-6">
         <div className="pb-6 pt-8">
           <Link
             href="/"

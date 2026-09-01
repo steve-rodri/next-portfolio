@@ -41,7 +41,7 @@ const config = {
         ink: {
           DEFAULT: "#EFEEED",
           muted: "#A3A19E",
-          faint: "#66645F",
+          faint: "#827F78",
           strong: "#EDEFF2",
         },
         line: {
@@ -51,7 +51,7 @@ const config = {
         blueprint: {
           DEFAULT: "#5C7FCC",
           bright: "#7D9ADB",
-          foreground: "#F4F7FF",
+          foreground: "#0B0A09",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -61,6 +61,12 @@
   }
 }
 
+/* Keyboard focus: 1px blueprint-bright outline, offset off the element */
+:focus-visible {
+  outline: 1px solid #7d9adb;
+  outline-offset: 2px;
+}
+
 /* Thin square scrollbars on graphite, per the design system */
 * {
   scrollbar-width: thin;

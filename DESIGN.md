@@ -9,13 +9,13 @@ colors:
   graphite-band: "#0B0A09"
   ink: "#EFEEED"
   ink-muted: "#A3A19E"
-  ink-faint: "#66645F"
+  ink-faint: "#827F78"
   ink-strong: "#EDEFF2"
   line: "#272524"
   line-strong: "#383531"
   blueprint: "#5C7FCC"
   blueprint-bright: "#7D9ADB"
-  blueprint-foreground: "#F4F7FF"
+  blueprint-foreground: "#0B0A09"
 typography:
   display:
     fontFamily: "Instrument Sans, Helvetica Neue, sans-serif"
@@ -101,7 +101,7 @@ The room is warm-dark, not cold: graphite surfaces with a faint warm cast rather
 A one-ink palette: warm graphite ground, warm gray text, and a single blueprint-blue accent.
 
 ### Primary
-- **Blueprint** (#5C7FCC): the only hue in the system. Marks what acts — primary buttons, live links, accent table links. Hover shifts to **Blueprint Bright** (#7D9ADB); text on blueprint fills is **Blueprint Paper** (#F4F7FF).
+- **Blueprint** (#5C7FCC): the only hue in the system. Marks what acts — primary buttons, live links, accent table links. Hover shifts to **Blueprint Bright** (#7D9ADB); text on blueprint fills is **Blueprint Ink** (#0B0A09, the Band value), so both button states clear WCAG AA.
 
 ### Neutral
 - **Graphite** (#131211): the page ground everywhere.
@@ -111,7 +111,7 @@ A one-ink palette: warm graphite ground, warm gray text, and a single blueprint-
 - **Graphite Band** (#0B0A09): the full-bleed footer band — one step *below* the page, closing the document.
 - **Ink** (#EFEEED): primary text and interactive labels at rest.
 - **Ink Muted** (#A3A19E): descriptions, secondary rows, supporting prose.
-- **Ink Faint** (#66645F): mono annotations — eyebrows, dates, counts, captions.
+- **Ink Faint** (#827F78): mono annotations — eyebrows, dates, counts, captions. Tuned to hold 4.5:1 on Graphite and Band.
 - **Ink Strong** (#EDEFF2): display-size text on the footer band.
 - **Rule** (#272524): default 1px borders, hairlines, row separators, scrollbar track contrast.
 - **Rule Strong** (#383531): ghost-button borders, underline decorations, scrollbar thumbs.
@@ -160,8 +160,9 @@ Precise and quiet: state changes are exact color/border shifts at 120ms ease-out
 
 ### Buttons
 - **Shape:** drafting-sharp (3px radius); padding 9px 14px (rail) or 7px 13px (cards); text 13.5–14px.
-- **Primary:** Blueprint fill (#5C7FCC), Blueprint Paper text (#F4F7FF), 500 weight. Hover: fill shifts to Blueprint Bright (#7D9ADB).
+- **Primary:** Blueprint fill (#5C7FCC), Blueprint Ink text (#0B0A09), 500 weight. Hover: fill shifts to Blueprint Bright (#7D9ADB), which raises text contrast further.
 - **Ghost:** transparent fill, 1px Rule Strong border (#383531), Ink text. Hover: border shifts to Blueprint, text to Blueprint Bright.
+- **Focus:** every interactive element carries the global keyboard treatment: a 1px Blueprint Bright outline, offset 2px (`:focus-visible`).
 - **No other variants.** Two buttons cover the site.
 
 ### Chips (tag pills)
@@ -196,6 +197,7 @@ A number in Instrument Sans 600 26px (−0.02em) over a Geist Mono 10.5px Ink Fa
 - **Do** use ↗︎ for external links (always with U+FE0E appended — mobile browsers otherwise render the emoji glyph) and · as the inline separator, as text.
 - **Do** cap prose measures with `ch` units (52–64ch) and use `text-wrap: pretty` on multi-line prose.
 - **Do** let absent content collapse — hide a section rather than render a placeholder.
+- **Do** keep the global 1px Blueprint Bright `focus-visible` outline (offset 2px); never suppress focus indicators.
 
 ### Don't:
 - **Don't** use shadows, gradients, glows, or backdrop blur anywhere.

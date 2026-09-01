@@ -33,11 +33,13 @@ export default async function Home() {
         personalInfo={personalInfo}
         experiences={experiences}
         featuredCount={featured.length}
+        capabilityCount={capabilityCount}
         otherCount={other.length}
       />
-      <main className="flex min-w-0 flex-col">
+      <main id="content" className="flex min-w-0 flex-col">
         <FeaturedWork projects={featured} />
         <OtherWork projects={other} />
+        <CapabilitiesSection skills={skills} />
         <StackSection skills={skills} />
         <AboutSection personalInfo={personalInfo} />
         <ContactBand personalInfo={personalInfo} />

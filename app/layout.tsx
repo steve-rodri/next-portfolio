@@ -28,6 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body className="bg-surface font-sans text-ink antialiased">
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-50 focus:rounded-[3px] focus:bg-blueprint focus:px-3.5 focus:py-[9px] focus:text-sm focus:font-medium focus:text-blueprint-foreground focus:no-underline"
+        >
+          Skip to content
+        </a>
         {children}
       </body>
     </html>
