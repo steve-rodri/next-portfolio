@@ -34,6 +34,7 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       options: {
         list: [
+          { title: "Languages", value: "Languages" },
           { title: "Mobile", value: "Mobile" },
           { title: "Frontend", value: "Frontend" },
           { title: "Backend", value: "Backend" },

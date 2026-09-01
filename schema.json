@@ -1158,6 +1158,10 @@
           "of": [
             {
               "type": "string",
+              "value": "Languages"
+            },
+            {
+              "type": "string",
               "value": "Mobile"
             },
             {
