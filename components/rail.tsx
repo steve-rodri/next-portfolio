@@ -59,7 +59,6 @@ export default function Rail({
   return (
     <aside className="sticky top-0 flex h-screen flex-col gap-10 overflow-y-auto border-r border-line px-7 pb-8 pt-10 narrow:static narrow:h-auto narrow:gap-6 narrow:border-b narrow:border-r-0 tight:px-6">
       <div className="flex flex-col gap-3.5">
-        <Eyebrow label="Portfolio" />
         <h1 className="text-[30px] font-semibold leading-[1.02] tracking-[-.025em]">
           {personalInfo.name.split(" ").map((word) => (
             <span key={word} className="block">
