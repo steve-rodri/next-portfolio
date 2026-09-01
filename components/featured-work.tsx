@@ -24,7 +24,7 @@ function FeaturedCard({ project }: { project: ProjectListItem }) {
 
   return (
     <div className="grid grid-cols-[260px_1fr] items-start gap-[34px] tight:flex tight:flex-col tight:gap-3">
-      <div className="h-[164px] overflow-hidden rounded-[4px] border border-line bg-surface-inset tight:h-[190px] tight:w-full">
+      <div className="h-[164px] w-[260px] max-w-full overflow-hidden rounded-[4px] border border-line bg-surface-inset">
         {src && (
           <Image
             src={src}
