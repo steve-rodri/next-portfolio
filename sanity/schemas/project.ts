@@ -145,6 +145,8 @@ export default defineType({
       title: "Screenshots",
       type: "array",
       fieldset: "detail",
+      description:
+        "Only entries with an image are shown; the section stays hidden until at least one has an image. Portrait images render as 9:16 phone tiles, landscape as 16:9 tiles.",
       of: [
         {
           type: "object",

@@ -164,7 +164,12 @@ export const projectBySlugQuery = groq`
     metaLine,
     stats[] { _key, value, label },
     sections[] { _key, heading, body },
-    screenshots[] { _key, caption, image }
+    screenshots[] {
+      _key,
+      caption,
+      image,
+      "aspectRatio": image.asset->metadata.dimensions.aspectRatio
+    }
   }
 `
 
