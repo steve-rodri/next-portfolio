@@ -80,6 +80,7 @@ export default async function WorkDetailPage({
             alt={project.title}
             width={1520}
             height={855}
+            priority
             className="block aspect-video w-full rounded-[4px] border border-line object-cover saturate-[.9]"
           />
         )}

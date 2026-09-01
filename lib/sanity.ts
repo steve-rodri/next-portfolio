@@ -26,7 +26,7 @@ export const client = createClient({
 const builder = imageUrlBuilder(client)
 
 export function urlFor(source: SanityImageSource) {
-  return builder.image(source)
+  return builder.image(source).auto("format")
 }
 
 // Typed fetch function for Sanity data

@@ -18,7 +18,13 @@ function thumbSrc(project: ProjectListItem) {
   return urlFor(project.image).width(520).height(328).url()
 }
 
-function FeaturedCard({ project }: { project: ProjectListItem }) {
+function FeaturedCard({
+  project,
+  position,
+}: {
+  project: ProjectListItem
+  position: number
+}) {
   const slug = project.slug?.current
   const showReadMore = Boolean(project.hasDetail && slug)
   const src = thumbSrc(project)
@@ -32,6 +38,7 @@ function FeaturedCard({ project }: { project: ProjectListItem }) {
             alt={project.image?.alt || project.title}
             width={520}
             height={328}
+            priority={position === 0}
             className="h-full w-full object-cover"
           />
         )}
@@ -102,7 +109,7 @@ export default function FeaturedWork({
           key={project._id}
           className={index > 0 ? "border-t border-line pt-[26px]" : ""}
         >
-          <FeaturedCard project={project} />
+          <FeaturedCard project={project} position={index} />
         </article>
       ))}
     </section>
