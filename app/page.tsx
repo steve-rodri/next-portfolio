@@ -6,6 +6,7 @@ import Rail from "@/components/rail"
 import StackSection from "@/components/stack-section"
 import {
   getExperiences,
+  getFeaturedProjects,
   getPersonalInfo,
   getProjects,
   getSkills,
@@ -14,15 +15,17 @@ import {
 export const dynamic = "force-dynamic"
 
 export default async function Home() {
-  const [personalInfo, skills, experiences, projects] = await Promise.all([
-    getPersonalInfo(),
-    getSkills(),
-    getExperiences(),
-    getProjects(),
-  ])
+  const [personalInfo, skills, experiences, projects, featured] =
+    await Promise.all([
+      getPersonalInfo(),
+      getSkills(),
+      getExperiences(),
+      getProjects(),
+      getFeaturedProjects(),
+    ])
 
-  const featured = projects.filter((project) => project.featured)
-  const other = projects.filter((project) => !project.featured)
+  const featuredIds = new Set(featured.map((project) => project._id))
+  const other = projects.filter((project) => !featuredIds.has(project._id))
 
   return (
     <div className="grid min-h-screen grid-cols-[324px_1fr] narrow:block">

@@ -114,7 +114,7 @@ export async function getEducation() {
 
 // Projects
 export const projectsQuery = groq`
-  *[_type == "project"] | order(coalesce(order, 9999) asc, startDate desc) {
+  *[_type == "project"] | order(startDate desc) {
     _id,
     title,
     slug,
@@ -129,11 +129,9 @@ export const projectsQuery = groq`
     },
     githubUrl,
     liveUrl,
-    featured,
     meta,
     highlight,
-    "hasDetail": count(sections) > 0,
-    "order": order
+    "hasDetail": count(sections) > 0
   }
 `
 
@@ -145,6 +143,43 @@ export async function getProjects() {
   } catch (error) {
     console.error("Error fetching projects:", error)
     return defaultProjects
+  }
+}
+
+// The Home singleton holds the featured cards as a drag-ordered reference list
+export const homeQuery = groq`
+  *[_type == "home"][0] {
+    featuredProjects[]->{
+      _id,
+      title,
+      slug,
+      summary,
+      description,
+      image,
+      technologies[]->{
+        _id,
+        name,
+        category,
+        featured
+      },
+      githubUrl,
+      liveUrl,
+      meta,
+      highlight,
+      "hasDetail": count(sections) > 0
+    }
+  }
+`
+
+export async function getFeaturedProjects(): Promise<ProjectListItem[]> {
+  try {
+    const data = await fetchSanity<{
+      featuredProjects: ProjectListItem[] | null
+    } | null>(homeQuery)
+    return data?.featuredProjects ?? []
+  } catch (error) {
+    console.error("Error fetching featured projects:", error)
+    return []
   }
 }
 

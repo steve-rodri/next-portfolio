@@ -74,24 +74,10 @@ export default defineType({
       type: "url",
     }),
     defineField({
-      name: "featured",
-      title: "Featured Project",
-      type: "boolean",
-      description: "Mark this project as featured",
-      initialValue: false,
-    }),
-    defineField({
       name: "startDate",
       title: "Start Date",
       type: "date",
       description: "The date the project was started",
-    }),
-    defineField({
-      name: "order",
-      title: "Display Order",
-      type: "number",
-      description:
-        "Lower numbers appear first (featured cards and the other-work table). Projects without a value follow, newest first.",
     }),
     defineField({
       name: "meta",
@@ -167,40 +153,16 @@ export default defineType({
   ],
   orderings: [
     {
-      title: "Display Order",
-      name: "displayOrder",
-      by: [
-        { field: "order", direction: "asc" },
-        { field: "startDate", direction: "desc" },
-      ],
-    },
-    {
       title: "Start Date",
       name: "startDateAsc",
       by: [{ field: "startDate", direction: "asc" }],
-    },
-    {
-      title: "Featured First",
-      name: "featuredFirst",
-      by: [
-        { field: "featured", direction: "desc" },
-        { field: "startDate", direction: "asc" },
-      ],
     },
   ],
   preview: {
     select: {
       title: "title",
-      summary: "summary",
+      subtitle: "summary",
       media: "image",
-      featured: "featured",
-    },
-    prepare({ title, summary, media, featured }) {
-      return {
-        title: featured ? `★ ${title}` : title,
-        subtitle: summary,
-        media,
-      }
     },
   },
 })

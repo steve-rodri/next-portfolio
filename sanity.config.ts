@@ -1,8 +1,23 @@
 import { defineConfig } from "sanity"
 import { visionTool } from "@sanity/vision"
 import { media } from "sanity-plugin-media"
-import { structureTool } from "sanity/structure"
+import { structureTool, type StructureResolver } from "sanity/structure"
 import { schema } from "./sanity/schema"
+
+// Home is a singleton: one pinned document instead of a list.
+const structure: StructureResolver = (S) =>
+  S.list()
+    .title("Content")
+    .items([
+      S.listItem()
+        .title("Home")
+        .id("home")
+        .child(S.document().schemaType("home").documentId("home")),
+      S.divider(),
+      ...S.documentTypeListItems().filter(
+        (item) => item.getId() !== "home",
+      ),
+    ])
 
 export default defineConfig({
   name: "default",
@@ -11,7 +26,7 @@ export default defineConfig({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
 
-  plugins: [structureTool(), visionTool(), media()],
+  plugins: [structureTool({ structure }), visionTool(), media()],
 
   schema,
 

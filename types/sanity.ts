@@ -62,9 +62,7 @@ export type Project = {
   }>
   githubUrl?: string
   liveUrl?: string
-  featured?: boolean
   startDate?: string
-  order?: number
   meta?: string
   highlight?: string
   metaLine?: string
@@ -233,6 +231,21 @@ export type PersonalInfo = {
   }>
 }
 
+export type Home = {
+  _id: string
+  _type: "home"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  featuredProjects?: Array<{
+    _ref: string
+    _type: "reference"
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: "project"
+  }>
+}
+
 export type MediaTag = {
   _id: string
   _type: "media.tag"
@@ -366,6 +379,7 @@ export type AllSanitySchemaTypes =
   | Experience
   | Skill
   | PersonalInfo
+  | Home
   | MediaTag
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -489,7 +503,7 @@ export type EducationQueryResult = Array<{
   order: number
 }>
 // Variable: projectsQuery
-// Query: *[_type == "project"] | order(coalesce(order, 9999) asc, startDate desc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category,      featured    },    githubUrl,    liveUrl,    featured,    meta,    highlight,    "hasDetail": count(sections) > 0,    "order": order  }
+// Query: *[_type == "project"] | order(startDate desc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category,      featured    },    githubUrl,    liveUrl,    meta,    highlight,    "hasDetail": count(sections) > 0  }
 export type ProjectsQueryResult = Array<{
   _id: string
   title: string
@@ -541,12 +555,69 @@ export type ProjectsQueryResult = Array<{
   }>
   githubUrl: string | null
   liveUrl: string | null
-  featured: boolean | null
   meta: string | null
   highlight: string | null
   hasDetail: boolean | null
-  order: number | null
 }>
+// Variable: homeQuery
+// Query: *[_type == "home"][0] {    featuredProjects[]->{      _id,      title,      slug,      summary,      description,      image,      technologies[]->{        _id,        name,        category,        featured      },      githubUrl,      liveUrl,      meta,      highlight,      "hasDetail": count(sections) > 0    }  }
+export type HomeQueryResult = {
+  featuredProjects: Array<{
+    _id: string
+    title: string
+    slug: Slug | null
+    summary: string | null
+    description: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: "span"
+        _key: string
+      }>
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal"
+      listItem?: "bullet" | "number"
+      markDefs?: Array<{
+        href?: string
+        _type: "link"
+        _key: string
+      }>
+      level?: number
+      _type: "block"
+      _key: string
+    }> | null
+    image: {
+      asset?: {
+        _ref: string
+        _type: "reference"
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      alt?: string
+      _type: "image"
+    }
+    technologies: Array<{
+      _id: string
+      name: string
+      category:
+        | "Backend"
+        | "Design"
+        | "Frontend"
+        | "Mobile"
+        | "Other"
+        | "Ship & verify"
+        | "Tools"
+      featured: boolean
+    }>
+    githubUrl: string | null
+    liveUrl: string | null
+    meta: string | null
+    highlight: string | null
+    hasDetail: boolean | null
+  }> | null
+} | null
 // Variable: projectBySlugQuery
 // Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    summary,    image,    technologies[]->{      _id,      name,      featured    },    githubUrl,    liveUrl,    metaLine,    stats[] { _key, value, label },    sections[] { _key, heading, body },    screenshots[] {      _key,      caption,      image,      "aspectRatio": image.asset->metadata.dimensions.aspectRatio    }  }
 export type ProjectBySlugQueryResult = {
@@ -629,7 +700,8 @@ declare module "@sanity/client" {
     '\n  *[_type == "skill"] {\n    _id,\n    name,\n    featured,\n    level,\n    category\n  }\n  | order(category asc, featured desc, name asc)\n': SkillsQueryResult
     '\n  *[_type == "experience"] | order(order asc) {\n    _id,\n    title,\n    company,\n    period,\n    description,\n    order\n  }\n': ExperiencesQueryResult
     '\n  *[_type == "education"] | order(order asc) {\n    _id,\n    degree,\n    institution,\n    period,\n    description,\n    order\n  }\n': EducationQueryResult
-    '\n  *[_type == "project"] | order(coalesce(order, 9999) asc, startDate desc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    featured,\n    meta,\n    highlight,\n    "hasDetail": count(sections) > 0,\n    "order": order\n  }\n': ProjectsQueryResult
+    '\n  *[_type == "project"] | order(startDate desc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    meta,\n    highlight,\n    "hasDetail": count(sections) > 0\n  }\n': ProjectsQueryResult
+    '\n  *[_type == "home"][0] {\n    featuredProjects[]->{\n      _id,\n      title,\n      slug,\n      summary,\n      description,\n      image,\n      technologies[]->{\n        _id,\n        name,\n        category,\n        featured\n      },\n      githubUrl,\n      liveUrl,\n      meta,\n      highlight,\n      "hasDetail": count(sections) > 0\n    }\n  }\n': HomeQueryResult
     '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    summary,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    metaLine,\n    stats[] { _key, value, label },\n    sections[] { _key, heading, body },\n    screenshots[] {\n      _key,\n      caption,\n      image,\n      "aspectRatio": image.asset->metadata.dimensions.aspectRatio\n    }\n  }\n': ProjectBySlugQueryResult
   }
 }
