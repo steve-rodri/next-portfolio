@@ -10,6 +10,12 @@ const mutedLink =
 const accentLink =
   "no-underline text-blueprint transition-colors duration-120 ease-out hover:text-blueprint-bright hover:underline hover:underline-offset-[3px]"
 
+// The thumbnail is what gives a row its height and its title indent. Reserving
+// the 44px gutter (w-11) and the 28px row height (h-7) here keeps both the left
+// edge and the vertical rhythm identical on rows that have no image.
+const projectCell =
+  "grid min-h-7 grid-cols-[44px_1fr] items-center gap-2.5"
+
 function Thumb({ project }: { project: ProjectListItem }) {
   if (!project.image?.asset?._ref) return null
   return (
@@ -32,9 +38,9 @@ function Row({ project }: { project: ProjectListItem }) {
   return (
     <tr className="border-b border-line last:border-b-0">
       <td className="w-[210px] py-[7px]">
-        <span className="inline-flex items-center gap-2.5">
+        <span className={projectCell}>
           <Thumb project={project} />
-          <span>{project.title}</span>
+          <span className="col-start-2">{project.title}</span>
         </span>
       </td>
       <td className="py-[7px] text-ink-muted tight:hidden">
