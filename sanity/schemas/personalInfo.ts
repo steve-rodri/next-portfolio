@@ -15,7 +15,15 @@ export default defineType({
       name: "role",
       title: "Professional Role",
       type: "string",
+      description: 'Plain job title, e.g. "Senior Full Stack Software Engineer"',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "tagline",
+      title: "Tagline",
+      type: "string",
+      description:
+        "Display line under the name in the rail. Falls back to Professional Role when empty.",
     }),
     defineField({
       name: "bio",

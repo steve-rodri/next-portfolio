@@ -1229,6 +1229,13 @@
         },
         "optional": false
       },
+      "tagline": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "bio": {
         "type": "objectAttribute",
         "value": {

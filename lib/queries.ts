@@ -18,6 +18,7 @@ export const personalInfoQuery = groq`
     _id,
     name,
     role,
+    tagline,
     bio,
     about,
     email,

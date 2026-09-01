@@ -182,6 +182,7 @@ export type PersonalInfo = {
   _rev: string
   name: string
   role: string
+  tagline?: string
   bio: string
   about?: Array<{
     children?: Array<{
@@ -379,11 +380,12 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: lib/queries.ts
 // Variable: personalInfoQuery
-// Query: *[_type == "personalInfo"][0] {    _id,    name,    role,    bio,    about,    email,    phone,    location,    profileImage,    socialLinks[] {      platform,      url    }  }
+// Query: *[_type == "personalInfo"][0] {    _id,    name,    role,    tagline,    bio,    about,    email,    phone,    location,    profileImage,    socialLinks[] {      platform,      url    }  }
 export type PersonalInfoQueryResult = {
   _id: string
   name: string
   role: string
+  tagline: string | null
   bio: string
   about: Array<{
     children?: Array<{
@@ -622,7 +624,7 @@ export type ProjectBySlugQueryResult = {
 import "@sanity/client"
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n  *[_type == "personalInfo"][0] {\n    _id,\n    name,\n    role,\n    bio,\n    about,\n    email,\n    phone,\n    location,\n    profileImage,\n    socialLinks[] {\n      platform,\n      url\n    }\n  }\n': PersonalInfoQueryResult
+    '\n  *[_type == "personalInfo"][0] {\n    _id,\n    name,\n    role,\n    tagline,\n    bio,\n    about,\n    email,\n    phone,\n    location,\n    profileImage,\n    socialLinks[] {\n      platform,\n      url\n    }\n  }\n': PersonalInfoQueryResult
     '\n  *[_type == "skill"] {\n    _id,\n    name,\n    featured,\n    level,\n    category\n  }\n  | order(category asc, featured desc, name asc)\n': SkillsQueryResult
     '\n  *[_type == "experience"] | order(order asc) {\n    _id,\n    title,\n    company,\n    period,\n    description,\n    order\n  }\n': ExperiencesQueryResult
     '\n  *[_type == "education"] | order(order asc) {\n    _id,\n    degree,\n    institution,\n    period,\n    description,\n    order\n  }\n': EducationQueryResult

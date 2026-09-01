@@ -10,6 +10,7 @@ export const defaultPersonalInfo: NonNullable<PersonalInfoQueryResult> = {
   _id: "default",
   name: "Steve Rodriguez",
   role: "Software Developer",
+  tagline: null,
   bio: "A passionate software developer with experience in web and mobile development.",
   about: null,
   email: "steve.rodri91@gmail.com",

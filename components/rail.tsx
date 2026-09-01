@@ -67,7 +67,7 @@ export default function Rail({
           ))}
         </h1>
         <span className="font-mono text-[11px] font-medium tracking-[.02em] text-ink-faint">
-          {personalInfo.role}
+          {personalInfo.tagline ?? personalInfo.role}
         </span>
         <p className="m-0 hidden text-sm leading-[1.6] text-ink-muted narrow:block">
           {personalInfo.bio}
