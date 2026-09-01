@@ -30,7 +30,7 @@ export default function ContactBand({
             rel="noopener noreferrer"
             className="text-blueprint-bright no-underline hover:underline hover:underline-offset-[3px]"
           >
-            {SOCIAL_LABELS[link.platform ?? "other"] ?? "Website"} ↗
+            {SOCIAL_LABELS[link.platform ?? "other"] ?? "Website"} ↗︎
           </a>
         ))}
         <span className="ml-auto font-mono text-[11px] text-ink-faint">

@@ -45,7 +45,7 @@ function Row({ project }: { project: ProjectListItem }) {
               rel="noopener noreferrer"
               className={mutedLink}
             >
-              Code ↗
+              Code ↗︎
             </a>
           )}
           {project.liveUrl && (
@@ -55,7 +55,7 @@ function Row({ project }: { project: ProjectListItem }) {
               rel="noopener noreferrer"
               className={accentLink}
             >
-              {shortLiveLabel(project)} ↗
+              {shortLiveLabel(project)} ↗︎
             </a>
           )}
         </span>

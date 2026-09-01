@@ -132,7 +132,7 @@ export default function Rail({
               rel="noopener noreferrer"
               className="text-ink-muted no-underline transition-colors duration-120 ease-out hover:text-ink hover:underline hover:underline-offset-[3px]"
             >
-              {SOCIAL_LABELS[link.platform ?? "other"] ?? "Website"} ↗
+              {SOCIAL_LABELS[link.platform ?? "other"] ?? "Website"} ↗︎
             </a>
           ))}
         </div>

@@ -101,7 +101,7 @@ export default async function WorkDetailPage({
               variant="primary"
               className="px-4 py-[9px] text-sm"
             >
-              {liveLabel(project)} ↗
+              {liveLabel(project)} ↗︎
             </ActionLink>
           )}
           <ActionLink href="/" variant="ghost" className="px-4 py-[9px] text-sm">

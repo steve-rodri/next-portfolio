@@ -79,7 +79,7 @@ function FeaturedCard({ project }: { project: ProjectListItem }) {
                 variant="ghost"
                 className="px-[13px] py-[7px] text-[13.5px]"
               >
-                {liveLabel(project)} ↗
+                {liveLabel(project)} ↗︎
               </ActionLink>
             )}
           </div>
