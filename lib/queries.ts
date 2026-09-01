@@ -1,11 +1,9 @@
-import axios from "axios"
 import {
   EducationQueryResult,
   ExperiencesQueryResult,
-  PersonalInfoQueryResult,
-  ProjectsQueryResult,
   SkillsQueryResult,
 } from "@/types/sanity"
+import { PersonalInfo, ProjectDetail, ProjectListItem } from "@/types/portfolio"
 import { fetchSanity } from "./sanity"
 import groq from "groq"
 import {
@@ -21,6 +19,7 @@ export const personalInfoQuery = groq`
     name,
     role,
     bio,
+    about,
     email,
     phone,
     location,
@@ -32,9 +31,9 @@ export const personalInfoQuery = groq`
   }
 `
 
-export async function getPersonalInfo() {
+export async function getPersonalInfo(): Promise<PersonalInfo> {
   try {
-    const data = await fetchSanity<PersonalInfoQueryResult>(personalInfoQuery)
+    const data = await fetchSanity<PersonalInfo | null>(personalInfoQuery)
     if (!data) return defaultPersonalInfo
     return data
   } catch (error) {
@@ -130,13 +129,16 @@ export const projectsQuery = groq`
     githubUrl,
     liveUrl,
     featured,
+    meta,
+    highlight,
+    "hasDetail": count(sections) > 0,
     "order": order
   }
 `
 
 export async function getProjects() {
   try {
-    const data = await fetchSanity<ProjectsQueryResult>(projectsQuery)
+    const data = await fetchSanity<ProjectListItem[]>(projectsQuery)
     if (!data) return defaultProjects
     return data
   } catch (error) {
@@ -145,19 +147,32 @@ export async function getProjects() {
   }
 }
 
-export const submitContactForm = async ({ data }: { data: any }) => {
+export const projectBySlugQuery = groq`
+  *[_type == "project" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    summary,
+    image,
+    technologies[]->{
+      _id,
+      name,
+      featured
+    },
+    githubUrl,
+    liveUrl,
+    metaLine,
+    stats[] { _key, value, label },
+    sections[] { _key, heading, body },
+    screenshots[] { _key, caption, image }
+  }
+`
+
+export async function getProjectBySlug(slug: string) {
   try {
-    const resp = await axios({
-      method: "POST",
-      url: `https://formcarry.com/s/ls4AfO00EbN`,
-      data,
-      headers: {
-        Accept: "application/json",
-      },
-    })
-    if (resp.status === 200) return { success: true }
-  } catch (e) {
-    console.log(e)
-    return { success: false }
+    return await fetchSanity<ProjectDetail | null>(projectBySlugQuery, { slug })
+  } catch (error) {
+    console.error("Error fetching project:", error)
+    return null
   }
 }

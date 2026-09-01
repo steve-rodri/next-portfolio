@@ -13,61 +13,6 @@
  */
 
 // Source: schema.json
-export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch"
-  background?: string
-  foreground?: string
-  population?: number
-  title?: string
-}
-
-export type SanityImagePalette = {
-  _type: "sanity.imagePalette"
-  darkMuted?: SanityImagePaletteSwatch
-  lightVibrant?: SanityImagePaletteSwatch
-  darkVibrant?: SanityImagePaletteSwatch
-  vibrant?: SanityImagePaletteSwatch
-  dominant?: SanityImagePaletteSwatch
-  lightMuted?: SanityImagePaletteSwatch
-  muted?: SanityImagePaletteSwatch
-}
-
-export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions"
-  height?: number
-  width?: number
-  aspectRatio?: number
-}
-
-export type SanityFileAsset = {
-  _id: string
-  _type: "sanity.fileAsset"
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  originalFilename?: string
-  label?: string
-  title?: string
-  description?: string
-  altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
-  uploadId?: string
-  path?: string
-  url?: string
-  source?: SanityAssetSourceData
-}
-
-export type Geopoint = {
-  _type: "geopoint"
-  lat?: number
-  lng?: number
-  alt?: number
-}
-
 export type Project = {
   _id: string
   _type: "project"
@@ -119,12 +64,52 @@ export type Project = {
   liveUrl?: string
   featured?: boolean
   startDate?: string
-}
-
-export type Slug = {
-  _type: "slug"
-  current: string
-  source?: string
+  meta?: string
+  highlight?: string
+  metaLine?: string
+  stats?: Array<{
+    value?: string
+    label?: string
+    _key: string
+  }>
+  sections?: Array<{
+    heading?: string
+    body?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: "span"
+        _key: string
+      }>
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote"
+      listItem?: "bullet" | "number"
+      markDefs?: Array<{
+        href?: string
+        _type: "link"
+        _key: string
+      }>
+      level?: number
+      _type: "block"
+      _key: string
+    }>
+    _key: string
+  }>
+  screenshots?: Array<{
+    caption?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: "reference"
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: "image"
+    }
+    _key: string
+  }>
 }
 
 export type Education = {
@@ -179,7 +164,14 @@ export type Skill = {
   name: string
   featured: boolean
   level?: "Beginner" | "Intermediate" | "Advanced" | "Expert"
-  category: "Frontend" | "Backend" | "Tools" | "Design" | "Other"
+  category:
+    | "Mobile"
+    | "Frontend"
+    | "Backend"
+    | "Ship & verify"
+    | "Tools"
+    | "Design"
+    | "Other"
 }
 
 export type PersonalInfo = {
@@ -191,6 +183,24 @@ export type PersonalInfo = {
   name: string
   role: string
   bio: string
+  about?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: "span"
+      _key: string
+    }>
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote"
+    listItem?: "bullet" | "number"
+    markDefs?: Array<{
+      href?: string
+      _type: "link"
+      _key: string
+    }>
+    level?: number
+    _type: "block"
+    _key: string
+  }>
   email: string
   phone?: string
   location?: string
@@ -221,12 +231,39 @@ export type PersonalInfo = {
   }>
 }
 
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop"
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
+export type MediaTag = {
+  _id: string
+  _type: "media.tag"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: Slug
+}
+
+export type SanityImagePaletteSwatch = {
+  _type: "sanity.imagePaletteSwatch"
+  background?: string
+  foreground?: string
+  population?: number
+  title?: string
+}
+
+export type SanityImagePalette = {
+  _type: "sanity.imagePalette"
+  darkMuted?: SanityImagePaletteSwatch
+  lightVibrant?: SanityImagePaletteSwatch
+  darkVibrant?: SanityImagePaletteSwatch
+  vibrant?: SanityImagePaletteSwatch
+  dominant?: SanityImagePaletteSwatch
+  lightMuted?: SanityImagePaletteSwatch
+  muted?: SanityImagePaletteSwatch
+}
+
+export type SanityImageDimensions = {
+  _type: "sanity.imageDimensions"
+  height?: number
+  width?: number
+  aspectRatio?: number
 }
 
 export type SanityImageHotspot = {
@@ -235,6 +272,36 @@ export type SanityImageHotspot = {
   y?: number
   height?: number
   width?: number
+}
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop"
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
+
+export type SanityFileAsset = {
+  _id: string
+  _type: "sanity.fileAsset"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  source?: SanityAssetSourceData
 }
 
 export type SanityImageAsset = {
@@ -260,13 +327,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData
 }
 
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData"
-  name?: string
-  id?: string
-  url?: string
-}
-
 export type SanityImageMetadata = {
   _type: "sanity.imageMetadata"
   location?: Geopoint
@@ -278,32 +338,71 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
+export type Geopoint = {
+  _type: "geopoint"
+  lat?: number
+  lng?: number
+  alt?: number
+}
+
+export type Slug = {
+  _type: "slug"
+  current: string
+  source?: string
+}
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData"
+  name?: string
+  id?: string
+  url?: string
+}
+
 export type AllSanitySchemaTypes =
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityFileAsset
-  | Geopoint
   | Project
-  | Slug
   | Education
   | Experience
   | Skill
   | PersonalInfo
-  | SanityImageCrop
+  | MediaTag
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
   | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
   | SanityImageAsset
-  | SanityAssetSourceData
   | SanityImageMetadata
+  | Geopoint
+  | Slug
+  | SanityAssetSourceData
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: lib/queries.ts
 // Variable: personalInfoQuery
-// Query: *[_type == "personalInfo"][0] {    _id,    name,    role,    bio,    email,    phone,    location,    profileImage,    socialLinks[] {      platform,      url    }  }
+// Query: *[_type == "personalInfo"][0] {    _id,    name,    role,    bio,    about,    email,    phone,    location,    profileImage,    socialLinks[] {      platform,      url    }  }
 export type PersonalInfoQueryResult = {
   _id: string
   name: string
   role: string
   bio: string
+  about: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: "span"
+      _key: string
+    }>
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal"
+    listItem?: "bullet" | "number"
+    markDefs?: Array<{
+      href?: string
+      _type: "link"
+      _key: string
+    }>
+    level?: number
+    _type: "block"
+    _key: string
+  }> | null
   email: string
   phone: string | null
   location: string | null
@@ -340,7 +439,14 @@ export type SkillsQueryResult = Array<{
   name: string
   featured: boolean
   level: "Advanced" | "Beginner" | "Expert" | "Intermediate" | null
-  category: "Backend" | "Design" | "Frontend" | "Other" | "Tools"
+  category:
+    | "Backend"
+    | "Design"
+    | "Frontend"
+    | "Mobile"
+    | "Other"
+    | "Ship & verify"
+    | "Tools"
 }>
 // Variable: experiencesQuery
 // Query: *[_type == "experience"] | order(order asc) {    _id,    title,    company,    period,    description,    order  }
@@ -380,7 +486,7 @@ export type EducationQueryResult = Array<{
   order: number
 }>
 // Variable: projectsQuery
-// Query: *[_type == "project"] | order(startDate desc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category,      featured    },    githubUrl,    liveUrl,    featured,    "order": order  }
+// Query: *[_type == "project"] | order(startDate desc) {    _id,    title,    slug,    summary,    description,    image,    technologies[]->{      _id,      name,      category,      featured    },    githubUrl,    liveUrl,    featured,    meta,    highlight,    "hasDetail": count(sections) > 0,    "order": order  }
 export type ProjectsQueryResult = Array<{
   _id: string
   title: string
@@ -420,23 +526,106 @@ export type ProjectsQueryResult = Array<{
   technologies: Array<{
     _id: string
     name: string
-    category: "Backend" | "Design" | "Frontend" | "Other" | "Tools"
+    category:
+      | "Backend"
+      | "Design"
+      | "Frontend"
+      | "Mobile"
+      | "Other"
+      | "Ship & verify"
+      | "Tools"
     featured: boolean
   }>
   githubUrl: string | null
   liveUrl: string | null
   featured: boolean | null
+  meta: string | null
+  highlight: string | null
+  hasDetail: boolean | null
   order: null
 }>
+// Variable: projectBySlugQuery
+// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    summary,    image,    technologies[]->{      _id,      name,      featured    },    githubUrl,    liveUrl,    metaLine,    stats[] { _key, value, label },    sections[] { _key, heading, body },    screenshots[] { _key, caption, image }  }
+export type ProjectBySlugQueryResult = {
+  _id: string
+  title: string
+  slug: string | null
+  summary: string | null
+  image: {
+    asset?: {
+      _ref: string
+      _type: "reference"
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: "image"
+  }
+  technologies: Array<{
+    _id: string
+    name: string
+    featured: boolean
+  }>
+  githubUrl: string | null
+  liveUrl: string | null
+  metaLine: string | null
+  stats: Array<{
+    _key: string
+    value: string | null
+    label: string | null
+  }> | null
+  sections: Array<{
+    _key: string
+    heading: string | null
+    body: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: "span"
+        _key: string
+      }>
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal"
+      listItem?: "bullet" | "number"
+      markDefs?: Array<{
+        href?: string
+        _type: "link"
+        _key: string
+      }>
+      level?: number
+      _type: "block"
+      _key: string
+    }> | null
+  }> | null
+  screenshots: Array<{
+    _key: string
+    caption: string | null
+    image: {
+      asset?: {
+        _ref: string
+        _type: "reference"
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: "image"
+    } | null
+  }> | null
+} | null
 
 // Query TypeMap
 import "@sanity/client"
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n  *[_type == "personalInfo"][0] {\n    _id,\n    name,\n    role,\n    bio,\n    email,\n    phone,\n    location,\n    profileImage,\n    socialLinks[] {\n      platform,\n      url\n    }\n  }\n': PersonalInfoQueryResult
+    '\n  *[_type == "personalInfo"][0] {\n    _id,\n    name,\n    role,\n    bio,\n    about,\n    email,\n    phone,\n    location,\n    profileImage,\n    socialLinks[] {\n      platform,\n      url\n    }\n  }\n': PersonalInfoQueryResult
     '\n  *[_type == "skill"] {\n    _id,\n    name,\n    featured,\n    level,\n    category\n  }\n  | order(category asc, featured desc, name asc)\n': SkillsQueryResult
     '\n  *[_type == "experience"] | order(order asc) {\n    _id,\n    title,\n    company,\n    period,\n    description,\n    order\n  }\n': ExperiencesQueryResult
     '\n  *[_type == "education"] | order(order asc) {\n    _id,\n    degree,\n    institution,\n    period,\n    description,\n    order\n  }\n': EducationQueryResult
-    '\n  *[_type == "project"] | order(startDate desc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    featured,\n    "order": order\n  }\n': ProjectsQueryResult
+    '\n  *[_type == "project"] | order(startDate desc) {\n    _id,\n    title,\n    slug,\n    summary,\n    description,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      category,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    featured,\n    meta,\n    highlight,\n    "hasDetail": count(sections) > 0,\n    "order": order\n  }\n': ProjectsQueryResult
+    '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    summary,\n    image,\n    technologies[]->{\n      _id,\n      name,\n      featured\n    },\n    githubUrl,\n    liveUrl,\n    metaLine,\n    stats[] { _key, value, label },\n    sections[] { _key, heading, body },\n    screenshots[] { _key, caption, image }\n  }\n': ProjectBySlugQueryResult
   }
 }

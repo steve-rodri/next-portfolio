@@ -25,6 +25,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "about",
+      title: "About",
+      type: "array",
+      of: [{ type: "block" }],
+      description: "Longer copy for the About section. Falls back to Bio when empty.",
+    }),
+    defineField({
       name: "email",
       title: "Email",
       type: "string",

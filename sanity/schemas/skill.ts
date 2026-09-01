@@ -34,8 +34,10 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       options: {
         list: [
+          { title: "Mobile", value: "Mobile" },
           { title: "Frontend", value: "Frontend" },
           { title: "Backend", value: "Backend" },
+          { title: "Ship & verify", value: "Ship & verify" },
           { title: "Tools", value: "Tools" },
           { title: "Design", value: "Design" },
           { title: "Other", value: "Other" },

@@ -6,11 +6,12 @@ import {
   ProjectsQueryResult,
 } from "@/types/sanity"
 
-export const defaultPersonalInfo: PersonalInfoQueryResult = {
+export const defaultPersonalInfo: NonNullable<PersonalInfoQueryResult> = {
   _id: "default",
   name: "Steve Rodriguez",
   role: "Software Developer",
   bio: "A passionate software developer with experience in web and mobile development.",
+  about: null,
   email: "steve.rodri91@gmail.com",
   phone: "+1 (516) 661-7679",
   location: "SE Asia",
@@ -34,7 +35,21 @@ export const defaultExperiences: ExperiencesQueryResult = [
     title: "Software Developer",
     company: "Tech Company",
     period: "2020 - Present",
-    description: "Developing web applications using modern technologies.",
+    description: [
+      {
+        _type: "block",
+        _key: "exp1block1",
+        style: "normal",
+        children: [
+          {
+            _type: "span",
+            _key: "exp1span1",
+            text: "Developing web applications using modern technologies.",
+            marks: [],
+          },
+        ],
+      },
+    ],
     order: 1,
   },
 ]
@@ -79,13 +94,16 @@ export const defaultProjects: ProjectsQueryResult = [
       },
     },
     technologies: [
-      { _id: "1", name: "Next.js", category: "Frontend" },
-      { _id: "2", name: "React", category: "Frontend" },
-      { _id: "3", name: "Tailwind CSS", category: "Frontend" },
+      { _id: "1", name: "Next.js", category: "Frontend", featured: true },
+      { _id: "2", name: "React", category: "Frontend", featured: true },
+      { _id: "3", name: "Tailwind CSS", category: "Frontend", featured: true },
     ],
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
     featured: true,
-    order: 1,
+    meta: null,
+    highlight: null,
+    hasDetail: false,
+    order: null,
   },
 ]

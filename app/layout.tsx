@@ -1,17 +1,23 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Instrument_Sans, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import Navbar from "@/components/navbar"
-import { ThemeProvider } from "@/components/theme-provider"
 
-const inter = Inter({ subsets: ["latin"] })
+const sans = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
+const mono = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+})
 
 export const metadata: Metadata = {
-  title: "Steve Rodriguez's Developer Portfolio",
+  title: "Steve Rodriguez — full-stack developer",
   description:
-    "Professional software developer portfolio showcasing projects and skills",
-  generator: "v0.dev",
+    "Six years of shipped React and TypeScript work; currently one of two engineers on RIDR.",
 }
 
 export default function RootLayout({
@@ -20,20 +26,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-        </ThemeProvider>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+      <body className="bg-surface font-sans text-ink antialiased">
+        {children}
       </body>
     </html>
   )
 }
-
-import "./globals.css"

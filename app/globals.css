@@ -54,9 +54,33 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-surface text-ink;
   }
   html {
     @apply scroll-smooth;
   }
+}
+
+/* Thin square scrollbars on graphite, per the design system */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #383531 #131211;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #131211;
+}
+::-webkit-scrollbar-thumb {
+  background: #383531;
+  border-radius: 0;
+  border: 2px solid #131211;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #66645f;
+}
+::-webkit-scrollbar-corner {
+  background: #131211;
 }

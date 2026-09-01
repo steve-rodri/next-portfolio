@@ -19,7 +19,40 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        narrow: { max: "960px" },
+        tight: { max: "760px" },
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", "Helvetica Neue", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
+      },
+      transitionDuration: {
+        "120": "120ms",
+      },
       colors: {
+        surface: {
+          DEFAULT: "#131211",
+          inset: "#1B1A19",
+          pressed: "#232221",
+          card: "#191817",
+          band: "#0B0A09",
+        },
+        ink: {
+          DEFAULT: "#EFEEED",
+          muted: "#A3A19E",
+          faint: "#66645F",
+          strong: "#EDEFF2",
+        },
+        line: {
+          DEFAULT: "#272524",
+          strong: "#383531",
+        },
+        blueprint: {
+          DEFAULT: "#5C7FCC",
+          bright: "#7D9ADB",
+          foreground: "#F4F7FF",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
