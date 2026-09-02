@@ -1,4 +1,19 @@
-import { defineField, defineType } from "sanity"
+import { defineField, defineType, type Reference } from "sanity"
+import { detailFields } from "./project-detail-fields"
+
+type ProjectDraft = { technologies?: Reference[] }
+
+/** Key technologies come from Technologies Used, so the detail page's stack stays the superset. */
+function subsetOfTechnologies(
+  value: Reference[] | undefined,
+  context: { document?: unknown },
+) {
+  const draft = context.document as ProjectDraft | undefined
+  const all = new Set((draft?.technologies ?? []).map((ref) => ref._ref))
+  const missing = (value ?? []).filter((ref) => ref._ref && !all.has(ref._ref))
+  if (!missing.length) return true
+  return "Every key technology must also be listed under Technologies Used"
+}
 
 export default defineType({
   name: "project",
@@ -35,6 +50,23 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "kind",
+      title: "Kind",
+      type: "string",
+      description:
+        "Groups the row in the Other work table. Leave it empty to list the project without a group.",
+      options: {
+        list: [
+          { title: "Paid work", value: "paid" },
+          { title: "Side project", value: "side" },
+          { title: "Tool", value: "tool" },
+          { title: "Take-home", value: "takehome" },
+          { title: "Coursework", value: "coursework" },
+        ],
+        layout: "radio",
+      },
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "array",
@@ -62,6 +94,15 @@ export default defineType({
       type: "array",
       of: [{ type: "reference", to: [{ type: "skill" }] }],
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "keyTechnologies",
+      title: "Key technologies",
+      type: "array",
+      description:
+        "The pills on the featured card and under the detail-page title, in this order (drag to reorder). Everything in Technologies Used still shows in the detail page's stack. Until this has entries, the card shows the full list.",
+      of: [{ type: "reference", to: [{ type: "skill" }] }],
+      validation: (Rule) => Rule.unique().custom(subsetOfTechnologies),
     }),
     defineField({
       name: "githubUrl",
@@ -94,73 +135,17 @@ export default defineType({
       name: "meta",
       title: "Meta Annotation",
       type: "string",
-      description: 'Mono note beside the title on featured cards, e.g. "ios & android · current"',
+      description:
+        'Mono note beside the title on featured cards, e.g. "ios & android · current"',
     }),
     defineField({
       name: "highlight",
       title: "Highlight Line",
       type: "string",
-      description: 'Mono stat line on featured cards, e.g. "4,500+ riders in 3 months · 19 releases"',
-    }),
-    defineField({
-      name: "metaLine",
-      title: "Meta Line",
-      type: "string",
-      fieldset: "detail",
-      description: 'Mono annotation under the title, e.g. "role: mobile engineer, one of two · 2025–now"',
-    }),
-    defineField({
-      name: "stats",
-      title: "Stats",
-      type: "array",
-      fieldset: "detail",
-      of: [
-        {
-          type: "object",
-          fields: [
-            defineField({ name: "value", title: "Value", type: "string" }),
-            defineField({ name: "label", title: "Label", type: "string" }),
-          ],
-        },
-      ],
-    }),
-    defineField({
-      name: "sections",
-      title: "Sections",
-      type: "array",
-      fieldset: "detail",
-      of: [
-        {
-          type: "object",
-          fields: [
-            defineField({ name: "heading", title: "Heading", type: "string" }),
-            defineField({
-              name: "body",
-              title: "Body",
-              type: "array",
-              of: [{ type: "block" }],
-            }),
-          ],
-        },
-      ],
-    }),
-    defineField({
-      name: "screenshots",
-      title: "Screenshots",
-      type: "array",
-      fieldset: "detail",
       description:
-        "Only entries with an image are shown; the section stays hidden until at least one has an image. Portrait images render as 9:16 phone tiles, landscape as 16:9 tiles.",
-      of: [
-        {
-          type: "object",
-          fields: [
-            defineField({ name: "caption", title: "Caption", type: "string" }),
-            defineField({ name: "image", title: "Image", type: "image" }),
-          ],
-        },
-      ],
+        'Mono stat line on featured cards, e.g. "4,500+ riders in 3 months · 19 releases"',
     }),
+    ...detailFields,
   ],
   orderings: [
     {

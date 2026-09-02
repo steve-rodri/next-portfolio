@@ -6,6 +6,7 @@ import TagPill from "@/components/tag-pill"
 import BodySection from "@/components/work/body-section"
 import CompactFooter from "@/components/work/compact-footer"
 import Screenshots from "@/components/work/screenshots"
+import StackBlock from "@/components/work/stack-block"
 import StatsRow from "@/components/work/stats-row"
 import { liveLabel } from "@/lib/live-label"
 import { getPersonalInfo, getProjectBySlug } from "@/lib/queries"
@@ -19,11 +20,33 @@ function heroSrc(project: ProjectDetail) {
   return urlFor(project.image).width(1520).height(855).url()
 }
 
-function sortTechnologies(technologies: ProjectDetail["technologies"]) {
-  return [...(technologies ?? [])].sort((a, b) => {
-    if (a.featured !== b.featured) return a.featured ? -1 : 1
-    return a.name.localeCompare(b.name)
-  })
+// The meta row carries the mono annotation and the curated key pills; the full
+// stack lives in StackBlock below the stats, so nothing is repeated up here.
+function MetaRow({ project }: { project: ProjectDetail }) {
+  const keyTechnologies = project.keyTechnologies ?? []
+  if (!project.metaLine && !keyTechnologies.length) return null
+
+  return (
+    <div className="flex flex-wrap items-center gap-3.5">
+      {project.metaLine && (
+        <span className="font-mono text-xs text-ink-faint">
+          {project.metaLine}
+        </span>
+      )}
+      {keyTechnologies.length > 0 && (
+        <span className="flex flex-wrap gap-1.5">
+          {keyTechnologies.map((tech) => (
+            <TagPill
+              key={tech._id}
+              label={tech.name}
+              href={tech.url}
+              size="sm"
+            />
+          ))}
+        </span>
+      )}
+    </div>
+  )
 }
 
 export default async function WorkDetailPage({
@@ -52,27 +75,19 @@ export default async function WorkDetailPage({
           </Link>
         </div>
 
-        <h1 className="m-0 text-[54px] font-semibold leading-[1.02] tracking-[-.025em] tight:text-[34px]">
-          {project.title}
-        </h1>
-        {project.summary && (
-          <p className="mb-0 mt-2.5 max-w-[52ch] text-[17px] leading-[1.6] text-ink-muted">
-            {project.summary}
-          </p>
-        )}
-
-        <div className="mb-7 mt-4 flex flex-wrap items-center gap-3.5">
-          {project.metaLine && (
-            <span className="font-mono text-xs text-ink-faint">
-              {project.metaLine}
-            </span>
-          )}
-          <span className="flex flex-wrap gap-1.5">
-            {sortTechnologies(project.technologies).map((tech) => (
-              <TagPill key={tech._id} label={tech.name} href={tech.url} size="sm" />
-            ))}
-          </span>
-        </div>
+        <header className="flex flex-col gap-4 pb-7">
+          <div>
+            <h1 className="m-0 text-[54px] font-semibold leading-[1.02] tracking-[-.025em] tight:text-[34px]">
+              {project.title}
+            </h1>
+            {project.summary && (
+              <p className="mb-0 mt-2.5 max-w-[52ch] text-[17px] leading-[1.6] text-ink-muted">
+                {project.summary}
+              </p>
+            )}
+          </div>
+          <MetaRow project={project} />
+        </header>
 
         {hero && (
           <Image
@@ -86,6 +101,8 @@ export default async function WorkDetailPage({
         )}
 
         {project.stats?.length ? <StatsRow stats={project.stats} /> : null}
+
+        <StackBlock technologies={project.technologies} />
 
         {project.sections?.map((section) => (
           <BodySection key={section._key} section={section} />
@@ -105,7 +122,11 @@ export default async function WorkDetailPage({
               {liveLabel(project)} ↗︎
             </ActionLink>
           )}
-          <ActionLink href="/" variant="ghost" className="px-4 py-[9px] text-sm">
+          <ActionLink
+            href="/"
+            variant="ghost"
+            className="px-4 py-[9px] text-sm"
+          >
             ← All work
           </ActionLink>
         </div>
