@@ -10,7 +10,7 @@
 endobj
 4 0 obj
 <<
-/Length 8979
+/Length 9304
 >>
 stream
 0.200025 w
@@ -204,55 +204,54 @@ BT
 10.3499999999999996 TL
 0. g
 40. 487. Td
-(One of two engineers building a community-driven cycling app in React Native, Expo, TypeScript, and Convex. Brings 7 years of) Tj
-T* (production React Native experience and ships the full product surface, from progression systems and the social feed to the Explore) Tj
-T* (map and the Convex backend, taking each feature from scoped ticket to App Store release. Currently shipping the app's Pro) Tj
-T* (subscription tier.) Tj
+(One of two engineers building a community-driven mountain biking app in React Native, Expo, TypeScript, and Convex. Brings 7 years) Tj
+T* (of production React Native experience and ships the full product surface, from progression systems and the social feed to the Explore) Tj
+T* (map and the Convex backend, taking each feature from scoped ticket to App Store release.) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 441. Td
+40. 452. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 441. Td
-(Took the app from private beta to 4,500+ riders and 3,000+ monthly actives within three months of the June 2026 launch, doubling) Tj
-T* (monthly actives from June to August with 5,000+ GPS ride sessions tracked and 1,800+ rides recorded. Shipped 19 production) Tj
-T* (releases at a roughly weekly cadence, each gated by Maestro E2E suites in CI) Tj
+50. 452. Td
+(Took the app to 4,500+ riders and 3,000+ monthly actives within three months of the June 2026 launch, doubling monthly actives) Tj
+T* (from June to August with 5,000+ GPS ride sessions tracked and 1,800+ rides recorded. Shipped 19 production releases at a) Tj
+T* (roughly weekly cadence, each gated by tests, type checks, and lint in CI) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 407. Td
+40. 418. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 407. Td
+50. 418. Td
 (Drove the ride-upload failure rate from 48% to under 1% with idempotent client-ID uploads, duplicate-session dedup, and a) Tj
-T* (crash-recovery flow that restored 146 interrupted rides. Hardened GPS accuracy with stationary-drift gating, elevation hysteresis,) Tj
-T* (and sustained-window speed measurement) Tj
+T* (crash-recovery flow that restored 146 interrupted rides. Hardened GPS accuracy with stationary-drift gating and sustained-window) Tj
+T* (speed measurement) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 373. Td
+40. 384. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 373. Td
+50. 384. Td
 (Designed the team's agentic delivery pipeline: git worktree isolation, parallel cloud and on-device Claude sessions across 2-3) Tj
 T* (concurrent simulators, and stakeholder requests decomposed into agent-scoped tasks on a ClickUp board wired into CI. Personally) Tj
 T* (landed 1,200+ commits across 167 PRs in six months) Tj
@@ -261,14 +260,14 @@ BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 339. Td
+40. 350. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 339. Td
+50. 350. Td
 (Built the trail system end-to-end: bulk OpenStreetMap MTB-trail import with automated classification, elevation enrichment from) Tj
 T* (AWS Terrain Tiles, and interactive review tooling, plus ride-session trail tracking that matches live GPS rides to trail segments for) Tj
 T* (per-run Trail Records. The system powers the Explore surface used by 77% of monthly actives) Tj
@@ -277,72 +276,57 @@ BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 305. Td
+40. 316. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 305. Td
+50. 316. Td
 (Architected the codebase for AI-agent reliability, with stable module boundaries and a shared skills/memory docs layer loaded by) Tj
 T* (every agent session. Kept generated code consistent and eliminated repeated instruction as agentic usage scaled) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-40. 282. Td
-(•) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-50. 282. Td
-(Serve as the production escalation point, monitoring Sentry across four projects; diagnosed an iOS Live Activity crash spanning) Tj
-T* (6,800+ events and shipped the fix in one release cycle) Tj
 ET
 BT
 /F2 10 Tf
 11.5 TL
 0. g
-40. 259. Td
+40. 293. Td
 (Senior Full Stack Engineer | Smash Creative) Tj
 ET
 BT
 /F3 9 Tf
 10.3499999999999996 TL
 0.314 g
-40. 248. Td
+40. 282. Td
 (March 2021 - January 2026 | Remote) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 238. Td
+40. 272. Td
 (Built and maintained mobile apps and internal tools as lead engineer across all codebases.) Tj
 ET
 BT
 /F2 9 Tf
 10.3499999999999996 TL
 0. g
-40. 225. Td
+40. 259. Td
 (Burn by Cara Loren: fitness subscription app with $1.3M+ lifetime revenue and 45K+ downloads, built for an influencer with 2M+ followers.) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 214. Td
+40. 248. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 214. Td
+50. 248. Td
 (Designed and built an automated retention pipeline that reduced daily churn by 9%, using RevenueCat webhooks to detect trial) Tj
 T* (conversions, Redis-based duplicate prevention, and Scribeless API integration for physical thank-you letters) Tj
 ET
@@ -350,14 +334,14 @@ BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 191. Td
+40. 225. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 191. Td
+50. 225. Td
 (Designed a goal-based progression engine with distinct difficulty curves for build muscle, lose weight, and stay active goals,) Tj
 T* (contributing to 24% MRR growth \(from $22.8K to $28.2K\) over 3 months) Tj
 ET
@@ -365,14 +349,14 @@ BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 168. Td
+40. 202. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 168. Td
+50. 202. Td
 (Reduced the app crash rate 69%, from 2.9 to 0.9 crashes per day, through Sentry integration, error boundaries, and systematic bug) Tj
 T* (fixes) Tj
 ET
@@ -380,14 +364,14 @@ BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 145. Td
+40. 179. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 145. Td
+50. 179. Td
 (Built the CI/CD pipeline with GitHub Actions: test and typecheck gates that block production deploys, tag-based staging and) Tj
 T* (production releases, hourly database backups with 24-file retention, and Slack alerts on failure) Tj
 ET
@@ -395,16 +379,38 @@ BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 122. Td
+40. 156. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 122. Td
+50. 156. Td
 (Led a zero-downtime migration from Strapi to Sanity CMS: wrote the data migration scripts, kept the app stable through cutover,) Tj
 T* (and enabled the content team to ship workout updates without engineering tickets) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0. g
+40. 133. Td
+(•) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0. g
+50. 133. Td
+(Executed 3 major Expo SDK upgrades \(50 to 52\) including React Native 0.74 to 0.76 and breaking API migrations, maintaining app) Tj
+T* (stability while adopting new platform features) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0. g
+40. 110. Td
+(Other Smash Creative Projects) Tj
 ET
 BT
 /F1 9 Tf
@@ -418,15 +424,23 @@ BT
 10.3499999999999996 TL
 0. g
 50. 99. Td
-(Executed 3 major Expo SDK upgrades \(50 to 52\) including React Native 0.74 to 0.76 and breaking API migrations, maintaining app) Tj
-T* (stability while adopting new platform features) Tj
+(Built an affiliate analytics mobile app from scratch in React Native and Expo: Victory Charts dashboards, session-based auth with) Tj
+T* (expo-secure-store, PWA support, and CI/CD deployment to DigitalOcean \(207 commits\)) Tj
 ET
 BT
-/F2 9 Tf
+/F1 9 Tf
 10.3499999999999996 TL
 0. g
 40. 76. Td
-(Other Smash Creative Projects) Tj
+(•) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0. g
+50. 76. Td
+(Inherited and modernized the internal project management dashboard: replaced the legacy charting library \(335 lines down to 86\),) Tj
+T* (added Clerk authentication and Vitest testing, and integrated Asana and Harvest APIs for real-time project tracking) Tj
 ET
 endstream
 endobj
@@ -440,7 +454,7 @@ endobj
 endobj
 6 0 obj
 <<
-/Length 5731
+/Length 5057
 >>
 stream
 0.5 w
@@ -457,8 +471,8 @@ BT
 10.3499999999999996 TL
 0. g
 50. 752. Td
-(Built an affiliate analytics mobile app from scratch in React Native and Expo: Victory Charts dashboards, session-based auth with) Tj
-T* (expo-secure-store, PWA support, and CI/CD deployment to DigitalOcean \(207 commits\)) Tj
+(Built an Instagram lead-scraping pipeline with Apify: Prisma/PostgreSQL storage, batch CSV processing, and Airtable sync for) Tj
+T* (influencer outreach campaigns) Tj
 ET
 BT
 /F1 9 Tf
@@ -472,36 +486,6 @@ BT
 10.3499999999999996 TL
 0. g
 50. 729. Td
-(Inherited and modernized the internal project management dashboard: replaced the legacy charting library \(335 lines down to 86\),) Tj
-T* (added Clerk authentication and Vitest testing, and integrated Asana and Harvest APIs for real-time project tracking) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-40. 706. Td
-(•) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-50. 706. Td
-(Built an Instagram lead-scraping pipeline with Apify: Prisma/PostgreSQL storage, batch CSV processing, and Airtable sync for) Tj
-T* (influencer outreach campaigns) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-40. 683. Td
-(•) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-50. 683. Td
 (Onboarded and coordinated 3-4 contractors across projects, maintained codebase continuity through team transitions, and) Tj
 T* (established patterns and documentation for faster ramp-up) Tj
 ET
@@ -509,22 +493,52 @@ BT
 /F2 10 Tf
 11.5 TL
 0. g
-40. 660. Td
+40. 706. Td
 (Software Developer | V School \(Contract\)) Tj
 ET
 BT
 /F3 9 Tf
 10.3499999999999996 TL
 0.314 g
-40. 649. Td
+40. 695. Td
 (May 2024 - September 2024 | Remote) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 639. Td
+40. 685. Td
 (Built features for V Hub, the school's internal learning management system.) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0. g
+40. 672. Td
+(•) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0. g
+50. 672. Td
+(Optimized the Airtable-to-Firestore sync from minutes to 3 seconds with batch writes, Promise.allSettled error handling, and a) Tj
+T* (refactored async data flow) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0. g
+40. 649. Td
+(•) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0. g
+50. 649. Td
+(Built a job application tracking system with Redux: weekly goal visualization, submission forms, and progress metrics that help) Tj
+T* (students track their search) Tj
 ET
 BT
 /F1 9 Tf
@@ -538,8 +552,8 @@ BT
 10.3499999999999996 TL
 0. g
 50. 626. Td
-(Optimized the Airtable-to-Firestore sync from minutes to 3 seconds with batch writes, Promise.allSettled error handling, and a) Tj
-T* (refactored async data flow) Tj
+(Built student management features for the admin dashboard, including a searchable DataTable with sorting and filtering, student) Tj
+T* (navigation, and report card views) Tj
 ET
 BT
 /F1 9 Tf
@@ -553,8 +567,8 @@ BT
 10.3499999999999996 TL
 0. g
 50. 603. Td
-(Built a job application tracking system with Redux: weekly goal visualization, submission forms, and progress metrics that help) Tj
-T* (students track their search) Tj
+(Migrated the codebase from moment.js to dayjs and upgraded the Nx monorepo through 3 major versions, reducing bundle size) Tj
+T* (and improving maintainability) Tj
 ET
 BT
 /F1 9 Tf
@@ -568,224 +582,194 @@ BT
 10.3499999999999996 TL
 0. g
 50. 580. Td
-(Built student management features for the admin dashboard, including a searchable DataTable with sorting and filtering, student) Tj
-T* (navigation, and report card views) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-40. 557. Td
-(•) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-50. 557. Td
-(Migrated the codebase from moment.js to dayjs and upgraded the Nx monorepo through 3 major versions, reducing bundle size) Tj
-T* (and improving maintainability) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-40. 534. Td
-(•) Tj
-ET
-BT
-/F1 9 Tf
-10.3499999999999996 TL
-0. g
-50. 534. Td
 (Implemented a Firebase caching layer for the Notion API with a 24-hour TTL, reducing external calls while keeping data fresh) Tj
 ET
 BT
 /F2 10 Tf
 11.5 TL
 0. g
-40. 522. Td
+40. 568. Td
 (Front-End Developer | Freelance) Tj
 ET
 BT
 /F3 9 Tf
 10.3499999999999996 TL
 0.314 g
-40. 511. Td
+40. 557. Td
 (February 2019 - March 2021 | Remote) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 501. Td
+40. 547. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 501. Td
-(Built the event registration and payment platform for the Governor of New Jersey's Inaugural Ball, integrating the Jotform API with) Tj
-T* (Authorize.net payment processing to handle 500+ registrations) Tj
+50. 547. Td
+(Built the event registration and payment platform for the Governor of New Jersey's 2022 Inaugural Ball \(a side project while at) Tj
+T* (Smash Creative\), integrating the Jotform API with Authorize.net payment processing to handle 500+ registrations) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 478. Td
+40. 524. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 478. Td
+50. 524. Td
 (Built a React portfolio showcase site for Media Solutions of New York, a video production company) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 466. Td
+40. 512. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 466. Td
+50. 512. Td
 (Built Blitz Reader, a Chrome extension for speed-reading web page text) Tj
 ET
 BT
 /F2 10 Tf
 11.5 TL
 0. g
-40. 448. Td
+40. 494. Td
 (PROJECTS) Tj
 ET
 0.5 w
-40. 446. m
-572. 446. l
+40. 492. m
+572. 492. l
 S
 BT
 /F2 10 Tf
 11.5 TL
 0. g
-40. 436. Td
+40. 482. Td
 (Commit Analyzer - Git History Analysis Tool) Tj
 ET
 BT
 /F3 9 Tf
 10.3499999999999996 TL
 0.314 g
-40. 425. Td
+40. 471. Td
 (TypeScript, Bun, Claude/Gemini/OpenAI APIs) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 415. Td
+40. 461. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 415. Td
+50. 461. Td
 (CLI tool analyzing git commit history using LLMs to generate insights, documentation, and codebase summaries) Tj
 ET
 BT
 /F2 10 Tf
 11.5 TL
 0. g
-40. 397. Td
+40. 443. Td
 (EDUCATION & TRAINING) Tj
 ET
 0.5 w
-40. 395. m
-572. 395. l
+40. 441. m
+572. 441. l
 S
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 385. Td
+40. 431. Td
 (theSeniorDev - Senior Developer Mentorship Program \(2022-2023\)) Tj
 ET
 BT
 /F3 9 Tf
 10.3499999999999996 TL
 0.314 g
-40. 374. Td
+40. 420. Td
 (Advanced system design, architecture patterns, and career development) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 363. Td
+40. 409. Td
 (V School - Full Stack JavaScript Certification \(2020-2021\)) Tj
 ET
 BT
 /F3 9 Tf
 10.3499999999999996 TL
 0.314 g
-40. 352. Td
+40. 398. Td
 (MERN stack, React, Node.js, MongoDB) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 341. Td
+40. 387. Td
 (General Assembly - Web Development Immersive \(2018-2019\)) Tj
 ET
 BT
 /F3 9 Tf
 10.3499999999999996 TL
 0.314 g
-40. 330. Td
+40. 376. Td
 (Full-stack fundamentals, JavaScript, Ruby on Rails) Tj
 ET
 BT
 /F2 10 Tf
 11.5 TL
 0. g
-40. 313. Td
+40. 359. Td
 (ADDITIONAL) Tj
 ET
 0.5 w
-40. 311. m
-572. 311. l
+40. 357. m
+572. 357. l
 S
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 301. Td
+40. 347. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 301. Td
+50. 347. Td
 (Languages: English \(native\)) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-40. 289. Td
+40. 335. Td
 (•) Tj
 ET
 BT
 /F1 9 Tf
 10.3499999999999996 TL
 0. g
-50. 289. Td
+50. 335. Td
 (Work Authorization: US Citizen - no sponsorship needed; work async with US/EU teams from UTC+7) Tj
 ET
 endstream
@@ -960,7 +944,7 @@ endobj
 21 0 obj
 <<
 /Producer (jsPDF 4.0.0)
-/CreationDate (D:20260828151303+07'00')
+/CreationDate (D:20260902125802+07'00')
 >>
 endobj
 22 0 obj
@@ -974,35 +958,35 @@ endobj
 xref
 0 23
 0000000000 65535 f 
-0000015039 00000 n 
-0000016864 00000 n 
+0000014690 00000 n 
+0000016515 00000 n 
 0000000015 00000 n 
 0000000120 00000 n 
-0000009151 00000 n 
-0000009256 00000 n 
-0000015102 00000 n 
-0000015227 00000 n 
-0000015357 00000 n 
-0000015490 00000 n 
-0000015628 00000 n 
-0000015752 00000 n 
-0000015881 00000 n 
-0000016013 00000 n 
-0000016149 00000 n 
-0000016277 00000 n 
-0000016404 00000 n 
-0000016533 00000 n 
-0000016666 00000 n 
-0000016768 00000 n 
-0000017114 00000 n 
-0000017200 00000 n 
+0000009476 00000 n 
+0000009581 00000 n 
+0000014753 00000 n 
+0000014878 00000 n 
+0000015008 00000 n 
+0000015141 00000 n 
+0000015279 00000 n 
+0000015403 00000 n 
+0000015532 00000 n 
+0000015664 00000 n 
+0000015800 00000 n 
+0000015928 00000 n 
+0000016055 00000 n 
+0000016184 00000 n 
+0000016317 00000 n 
+0000016419 00000 n 
+0000016765 00000 n 
+0000016851 00000 n 
 trailer
 <<
 /Size 23
 /Root 22 0 R
 /Info 21 0 R
-/ID [ <3D1F8E8C8A38FA081CDCC7177EA9CF89> <3D1F8E8C8A38FA081CDCC7177EA9CF89> ]
+/ID [ <9474F56EF735AB87838F019B7464C7ED> <9474F56EF735AB87838F019B7464C7ED> ]
 >>
 startxref
-17304
+16955
 %%EOF
