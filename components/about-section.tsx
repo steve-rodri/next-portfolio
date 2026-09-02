@@ -3,6 +3,7 @@ import {
   PortableTextBlock,
   PortableTextComponents,
 } from "next-sanity"
+import PortableLink from "@/components/portable-link"
 import SectionHeader from "@/components/section-header"
 import type { PersonalInfo } from "@/types/portfolio"
 
@@ -13,18 +14,7 @@ const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => <p className={paragraphClass}>{children}</p>,
   },
-  marks: {
-    link: ({ children, value }) => (
-      <a
-        href={value?.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blueprint underline underline-offset-[3px] transition-colors duration-120 ease-out hover:text-blueprint-bright"
-      >
-        {children}
-      </a>
-    ),
-  },
+  marks: { link: PortableLink },
 }
 
 export default function AboutSection({

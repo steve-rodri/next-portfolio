@@ -1,5 +1,6 @@
 import { PortableText, PortableTextBlock } from "next-sanity"
 import type React from "react"
+import PortableLink from "@/components/portable-link"
 import type { ProjectSection } from "@/types/portfolio"
 
 const portableComponents = {
@@ -10,6 +11,7 @@ const portableComponents = {
       </p>
     ),
   },
+  marks: { link: PortableLink },
 }
 
 export default function BodySection({ section }: { section: ProjectSection }) {
