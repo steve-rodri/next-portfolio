@@ -1,4 +1,4 @@
-import type { PortableTextMarkComponentProps } from "next-sanity"
+import type { PortableTextMarkComponentProps } from "@portabletext/react"
 
 const linkClass =
   "text-blueprint underline underline-offset-[3px] transition-colors duration-120 ease-out hover:text-blueprint-bright"
