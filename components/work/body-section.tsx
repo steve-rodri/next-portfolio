@@ -1,4 +1,4 @@
-import { PortableText, PortableTextBlock } from "next-sanity"
+import { PortableText, PortableTextBlock } from "@portabletext/react"
 import type React from "react"
 import PortableLink from "@/components/portable-link"
 import type { ProjectSection } from "@/types/portfolio"

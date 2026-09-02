@@ -9,11 +9,18 @@ import Screenshots from "@/components/work/screenshots"
 import StackBlock from "@/components/work/stack-block"
 import StatsRow from "@/components/work/stats-row"
 import { liveLabel } from "@/lib/live-label"
-import { getPersonalInfo, getProjectBySlug } from "@/lib/queries"
+import { getPersonalInfo, getProjectBySlug, getProjects } from "@/lib/queries"
 import { urlFor } from "@/lib/sanity"
 import type { ProjectDetail } from "@/types/portfolio"
 
-export const dynamic = "force-dynamic"
+export const revalidate = 60
+
+export async function generateStaticParams() {
+  const projects = await getProjects()
+  return projects.flatMap((project) =>
+    project.slug?.current ? [{ slug: project.slug.current }] : [],
+  )
+}
 
 function heroSrc(project: ProjectDetail) {
   if (!project.image?.asset?._ref) return null

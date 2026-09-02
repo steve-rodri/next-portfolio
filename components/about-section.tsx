@@ -2,7 +2,7 @@ import {
   PortableText,
   PortableTextBlock,
   PortableTextComponents,
-} from "next-sanity"
+} from "@portabletext/react"
 import PortableLink from "@/components/portable-link"
 import SectionHeader from "@/components/section-header"
 import type { PersonalInfo } from "@/types/portfolio"
