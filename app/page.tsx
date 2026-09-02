@@ -2,6 +2,7 @@ import AboutSection from "@/components/about-section"
 import CapabilitiesSection from "@/components/capabilities-section"
 import ContactBand from "@/components/contact-band"
 import FeaturedWork from "@/components/featured-work"
+import Intro from "@/components/intro"
 import OtherWork from "@/components/other-work"
 import Rail from "@/components/rail"
 import StackSection from "@/components/stack-section"
@@ -40,6 +41,7 @@ export default async function Home() {
         otherCount={other.length}
       />
       <main id="content" className="flex min-w-0 flex-col">
+        <Intro bio={personalInfo.bio} />
         <FeaturedWork projects={featured} />
         <OtherWork projects={other} />
         <CapabilitiesSection skills={skills} />

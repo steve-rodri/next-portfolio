@@ -71,9 +71,12 @@ export default function Rail({
         <span className="font-mono text-[11px] font-medium tracking-[.02em] text-ink-faint">
           {personalInfo.tagline ?? personalInfo.role}
         </span>
-        <p className="m-0 hidden text-sm leading-[1.6] text-ink-muted narrow:block">
-          {personalInfo.bio}
-        </p>
+        <div className="hidden flex-col gap-2.5 pt-1 narrow:flex">
+          <Eyebrow label="Bio" />
+          <p className="m-0 text-sm leading-[1.6] text-ink-muted">
+            {personalInfo.bio}
+          </p>
+        </div>
       </div>
 
       <nav className="flex flex-col gap-[9px] text-sm narrow:hidden">
