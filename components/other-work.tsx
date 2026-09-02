@@ -51,6 +51,7 @@ function Row({ project }: { project: ProjectListItem }) {
           {detailHref && (
             <Link href={detailHref} className={mutedLink}>
               Read more
+              <span className="sr-only"> about {project.title}</span>
             </Link>
           )}
           {project.githubUrl && (

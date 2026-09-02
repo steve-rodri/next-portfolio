@@ -72,6 +72,7 @@ function FeaturedCard({
                 className="px-[13px] py-[7px] text-[13.5px]"
               >
                 Read more
+                <span className="sr-only"> about {project.title}</span>
               </ActionLink>
             )}
             {project.liveUrl && (

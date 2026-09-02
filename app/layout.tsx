@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Instrument_Sans, Geist_Mono } from "next/font/google"
+import { preconnect } from "react-dom"
 import "./globals.css"
 
 const sans = Instrument_Sans({
@@ -30,6 +31,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  preconnect("https://cdn.sanity.io")
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body className="bg-surface font-sans text-ink antialiased">

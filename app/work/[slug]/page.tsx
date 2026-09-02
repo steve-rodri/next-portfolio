@@ -103,6 +103,7 @@ export default async function WorkDetailPage({
             width={1520}
             height={855}
             priority
+            fetchPriority="high"
             className="block aspect-video w-full rounded-[4px] border border-line object-cover saturate-[.9]"
           />
         )}
