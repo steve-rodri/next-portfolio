@@ -71,6 +71,7 @@ export const defaultProjects: ProjectsQueryResult = [
     _id: "proj1",
     title: "Portfolio Website",
     summary: null,
+    kind: null,
     slug: null,
     description: [
       {
@@ -116,6 +117,7 @@ export const defaultProjects: ProjectsQueryResult = [
     liveLabel: null,
     meta: null,
     highlight: null,
+    keyTechnologies: null,
     hasDetail: false,
   },
 ]

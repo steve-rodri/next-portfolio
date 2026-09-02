@@ -1,4 +1,4 @@
-import { CATEGORY_LABELS, isCapability, type Skill } from "@/lib/skills"
+import { CATEGORY_LABELS, isCapability } from "@/lib/skills"
 import type { SkillsQueryResult } from "@/types/sanity"
 
 export interface StackItem {
@@ -11,18 +11,23 @@ export interface StackGroup {
   items: StackItem[]
 }
 
-function toItem(skill: Skill): StackItem {
-  return { name: skill.name, url: skill.url ?? null }
+interface Categorized {
+  name: string
+  category: string
+  url?: string | null
 }
 
-/** Groups featured technologies into the design's Stack rows; empty groups drop out. */
-export function buildStackGroups(skills: SkillsQueryResult): StackGroup[] {
+function toItem(technology: Categorized): StackItem {
+  return { name: technology.name, url: technology.url ?? null }
+}
+
+/** Groups technologies into the design's Stack rows, in category order; empty groups drop out. */
+export function groupByCategory(technologies: Categorized[]): StackGroup[] {
   const byCategory = new Map<string, StackItem[]>()
-  for (const skill of skills) {
-    if (!skill.featured || isCapability(skill)) continue
-    const items = byCategory.get(skill.category) ?? []
-    items.push(toItem(skill))
-    byCategory.set(skill.category, items)
+  for (const technology of technologies) {
+    const items = byCategory.get(technology.category) ?? []
+    items.push(toItem(technology))
+    byCategory.set(technology.category, items)
   }
 
   const groups: StackGroup[] = []
@@ -35,4 +40,11 @@ export function buildStackGroups(skills: SkillsQueryResult): StackGroup[] {
     if (items.length) groups.push({ label: category, items })
   }
   return groups
+}
+
+/** The home Stack: featured technologies only, capabilities excluded. */
+export function buildStackGroups(skills: SkillsQueryResult): StackGroup[] {
+  return groupByCategory(
+    skills.filter((skill) => skill.featured && !isCapability(skill)),
+  )
 }

@@ -114,28 +114,40 @@ export async function getEducation() {
   }
 }
 
-// Projects
+// Projects: what a featured card or an Other work row needs, shared by the list and the Home singleton
+const projectListFields = /* groq */ `
+  _id,
+  title,
+  slug,
+  summary,
+  kind,
+  description,
+  image,
+  technologies[]->{
+    _id,
+    name,
+    category,
+    featured,
+    url
+  },
+  keyTechnologies[]->{
+    _id,
+    name,
+    category,
+    featured,
+    url
+  },
+  githubUrl,
+  liveUrl,
+  liveLabel,
+  meta,
+  highlight,
+  "hasDetail": count(sections) > 0
+`
+
 export const projectsQuery = groq`
   *[_type == "project"] | order(startDate desc) {
-    _id,
-    title,
-    slug,
-    summary,
-    description,
-    image,
-    technologies[]->{
-      _id,
-      name,
-      category,
-      featured,
-      url
-    },
-    githubUrl,
-    liveUrl,
-    liveLabel,
-    meta,
-    highlight,
-    "hasDetail": count(sections) > 0
+    ${projectListFields}
   }
 `
 
@@ -154,25 +166,7 @@ export async function getProjects() {
 export const homeQuery = groq`
   *[_type == "home"][0] {
     featuredProjects[]->{
-      _id,
-      title,
-      slug,
-      summary,
-      description,
-      image,
-      technologies[]->{
-        _id,
-        name,
-        category,
-        featured,
-        url
-      },
-      githubUrl,
-      liveUrl,
-      liveLabel,
-      meta,
-      highlight,
-      "hasDetail": count(sections) > 0
+      ${projectListFields}
     }
   }
 `
@@ -197,6 +191,13 @@ export const projectBySlugQuery = groq`
     summary,
     image,
     technologies[]->{
+      _id,
+      name,
+      category,
+      featured,
+      url
+    },
+    keyTechnologies[]->{
       _id,
       name,
       featured,

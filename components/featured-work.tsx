@@ -4,14 +4,8 @@ import SectionHeader from "@/components/section-header"
 import TagPill from "@/components/tag-pill"
 import { liveLabel } from "@/lib/live-label"
 import { urlFor } from "@/lib/sanity"
+import { cardTechnologies } from "@/lib/technologies"
 import type { ProjectListItem } from "@/types/portfolio"
-
-function sortTechnologies(technologies: ProjectListItem["technologies"]) {
-  return [...(technologies ?? [])].sort((a, b) => {
-    if (a.featured !== b.featured) return a.featured ? -1 : 1
-    return a.name.localeCompare(b.name)
-  })
-}
 
 function thumbSrc(project: ProjectListItem) {
   if (!project.image?.asset?._ref) return null
@@ -65,7 +59,7 @@ function FeaturedCard({
           </span>
         )}
         <div className="mt-1.5 flex flex-wrap gap-1.5">
-          {sortTechnologies(project.technologies).map((tech) => (
+          {cardTechnologies(project).map((tech) => (
             <TagPill key={tech._id} label={tech.name} href={tech.url} />
           ))}
         </div>
@@ -102,7 +96,10 @@ export default function FeaturedWork({
   projects: ProjectListItem[]
 }) {
   return (
-    <section id="work" className="flex flex-col gap-[26px] px-10 pt-10 tight:px-6">
+    <section
+      id="work"
+      className="flex flex-col gap-[26px] px-10 pt-10 tight:px-6"
+    >
       <SectionHeader label="Featured work" />
       {projects.map((project, index) => (
         <article
