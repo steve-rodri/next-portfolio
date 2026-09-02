@@ -14,8 +14,15 @@ import {
   getProjects,
   getSkills,
 } from "@/lib/queries"
+import type { PersonalInfo } from "@/types/portfolio"
 
 export const revalidate = 60
+
+/** Without a personalInfo document there is no rail, so the page is one column. */
+function layoutClass(personalInfo: PersonalInfo | null) {
+  if (!personalInfo) return "min-h-screen"
+  return "grid min-h-screen grid-cols-[324px_1fr] narrow:block"
+}
 
 export default async function Home() {
   const [personalInfo, skills, experiences, projects, featured] =
@@ -32,22 +39,24 @@ export default async function Home() {
   const capabilityCount = buildCapabilities(skills).length
 
   return (
-    <div className="grid min-h-screen grid-cols-[324px_1fr] narrow:block">
-      <Rail
-        personalInfo={personalInfo}
-        experiences={experiences}
-        featuredCount={featured.length}
-        capabilityCount={capabilityCount}
-        otherCount={other.length}
-      />
+    <div className={layoutClass(personalInfo)}>
+      {personalInfo && (
+        <Rail
+          personalInfo={personalInfo}
+          experiences={experiences}
+          featuredCount={featured.length}
+          capabilityCount={capabilityCount}
+          otherCount={other.length}
+        />
+      )}
       <main id="content" className="flex min-w-0 flex-col">
-        <Intro bio={personalInfo.bio} />
+        {personalInfo && <Intro bio={personalInfo.bio} />}
         <FeaturedWork projects={featured} />
         <OtherWork projects={other} />
         <CapabilitiesSection skills={skills} />
         <StackSection skills={skills} />
-        <AboutSection personalInfo={personalInfo} />
-        <ContactBand personalInfo={personalInfo} />
+        {personalInfo && <AboutSection personalInfo={personalInfo} />}
+        {personalInfo && <ContactBand personalInfo={personalInfo} />}
       </main>
     </div>
   )

@@ -118,7 +118,9 @@ export default async function WorkDetailPage({
         </div>
       </main>
 
-      <CompactFooter email={personalInfo.email} name={personalInfo.name} />
+      {personalInfo && (
+        <CompactFooter email={personalInfo.email} name={personalInfo.name} />
+      )}
     </div>
   )
 }
