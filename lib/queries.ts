@@ -6,12 +6,6 @@ import {
 import { PersonalInfo, ProjectDetail, ProjectListItem } from "@/types/portfolio"
 import { fetchSanity } from "./sanity"
 import groq from "groq"
-import {
-  defaultEducation,
-  defaultExperiences,
-  defaultPersonalInfo,
-  defaultProjects,
-} from "./defaults"
 
 export const personalInfoQuery = groq`
   *[_type == "personalInfo"][0] {
@@ -32,14 +26,12 @@ export const personalInfoQuery = groq`
   }
 `
 
-export async function getPersonalInfo(): Promise<PersonalInfo> {
+export async function getPersonalInfo(): Promise<PersonalInfo | null> {
   try {
-    const data = await fetchSanity<PersonalInfo | null>(personalInfoQuery)
-    if (!data) return defaultPersonalInfo
-    return data
+    return await fetchSanity<PersonalInfo | null>(personalInfoQuery)
   } catch (error) {
     console.error("Error fetching personal info:", error)
-    return defaultPersonalInfo
+    return null
   }
 }
 
@@ -64,7 +56,7 @@ export async function getSkills() {
     return data
   } catch (error) {
     console.error("Error fetching skills:", error)
-    return [] // Or a default value
+    return []
   }
 }
 
@@ -87,7 +79,7 @@ export async function getExperiences() {
     return data
   } catch (error) {
     console.error("Error fetching experiences:", error)
-    return defaultExperiences
+    return []
   }
 }
 
@@ -106,11 +98,11 @@ export const educationQuery = groq`
 export async function getEducation() {
   try {
     const data = await fetchSanity<EducationQueryResult>(educationQuery)
-    if (!data) return defaultEducation
+    if (!data) return []
     return data
   } catch (error) {
     console.error("Error fetching education:", error)
-    return defaultEducation
+    return []
   }
 }
 
@@ -151,14 +143,14 @@ export const projectsQuery = groq`
   }
 `
 
-export async function getProjects() {
+export async function getProjects(): Promise<ProjectListItem[]> {
   try {
     const data = await fetchSanity<ProjectListItem[]>(projectsQuery)
-    if (!data) return defaultProjects
+    if (!data) return []
     return data
   } catch (error) {
     console.error("Error fetching projects:", error)
-    return defaultProjects
+    return []
   }
 }
 
