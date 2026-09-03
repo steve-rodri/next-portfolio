@@ -94,11 +94,11 @@ export default async function WorkDetailPage({
 
         {project.stats?.length ? <StatsRow stats={project.stats} /> : null}
 
-        <StackBlock technologies={project.technologies} />
-
         {project.sections?.map((section) => (
           <BodySection key={section._key} section={section} />
         ))}
+
+        <StackBlock technologies={project.technologies} />
 
         {project.screenshots?.length ? (
           <Screenshots screenshots={project.screenshots} />
