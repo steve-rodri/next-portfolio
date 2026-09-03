@@ -189,12 +189,6 @@ export const projectBySlugQuery = groq`
       featured,
       url
     },
-    keyTechnologies[]->{
-      _id,
-      name,
-      featured,
-      url
-    },
     githubUrl,
     liveUrl,
     liveLabel,
