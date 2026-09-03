@@ -100,7 +100,7 @@ export default defineType({
       title: "Key technologies",
       type: "array",
       description:
-        "The pills on the featured card and under the detail-page title, in this order (drag to reorder). Everything in Technologies Used still shows in the detail page's stack. Until this has entries, the card shows the full list.",
+        "The pills on the featured card, in this order (drag to reorder). The detail page shows everything in Technologies Used in its stack instead. Until this has entries, the card shows the full list.",
       of: [{ type: "reference", to: [{ type: "skill" }] }],
       validation: (Rule) => Rule.unique().custom(subsetOfTechnologies),
     }),

@@ -2,7 +2,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import ActionLink from "@/components/action-link"
-import TagPill from "@/components/tag-pill"
 import BodySection from "@/components/work/body-section"
 import CompactFooter from "@/components/work/compact-footer"
 import Screenshots from "@/components/work/screenshots"
@@ -27,31 +26,16 @@ function heroSrc(project: ProjectDetail) {
   return urlFor(project.image).width(1520).height(855).url()
 }
 
-// The meta row carries the mono annotation and the curated key pills; the full
-// stack lives in StackBlock below the stats, so nothing is repeated up here.
+// The meta row carries only the mono annotation; the stack pills live once, in
+// StackBlock below the stats, so the header never repeats them.
 function MetaRow({ project }: { project: ProjectDetail }) {
-  const keyTechnologies = project.keyTechnologies ?? []
-  if (!project.metaLine && !keyTechnologies.length) return null
+  if (!project.metaLine) return null
 
   return (
     <div className="flex flex-wrap items-center gap-3.5">
-      {project.metaLine && (
-        <span className="font-mono text-xs text-ink-faint">
-          {project.metaLine}
-        </span>
-      )}
-      {keyTechnologies.length > 0 && (
-        <span className="flex flex-wrap gap-1.5">
-          {keyTechnologies.map((tech) => (
-            <TagPill
-              key={tech._id}
-              label={tech.name}
-              href={tech.url}
-              size="sm"
-            />
-          ))}
-        </span>
-      )}
+      <span className="font-mono text-xs text-ink-faint">
+        {project.metaLine}
+      </span>
     </div>
   )
 }
