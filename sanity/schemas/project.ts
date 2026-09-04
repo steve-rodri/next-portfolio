@@ -113,13 +113,15 @@ export default defineType({
       name: "liveUrl",
       title: "Live Demo URL",
       type: "url",
+      description:
+        "Where the project actually lives: the site, the store listing, or the npm package page for a CLI tool.",
     }),
     defineField({
       name: "liveLabel",
       title: "Live Link Label",
       type: "string",
       options: {
-        list: ["View Site", "View App"],
+        list: ["View Site", "View App", "View on npm"],
         layout: "radio",
       },
       description:
