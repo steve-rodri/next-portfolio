@@ -2,37 +2,44 @@ import Image from "next/image"
 import { urlFor } from "@/lib/sanity"
 import type { ProjectScreenshot } from "@/types/portfolio"
 
+const PORTRAIT_FALLBACK_RATIO = 0.5625
+
 const tiles = {
   portrait: {
     column: "w-[112px] tight:w-[100px]",
-    aspect: "aspect-[9/16]",
     width: 224,
-    height: 398,
   },
   landscape: {
     column: "w-[240px]",
-    aspect: "aspect-video",
     width: 480,
-    height: 270,
   },
 }
 
-function orientation(screenshot: ProjectScreenshot) {
-  return (screenshot.aspectRatio ?? 0.5625) >= 1 ? "landscape" : "portrait"
+function ratioOf(screenshot: ProjectScreenshot) {
+  return screenshot.aspectRatio ?? PORTRAIT_FALLBACK_RATIO
 }
 
+function orientation(screenshot: ProjectScreenshot) {
+  return ratioOf(screenshot) >= 1 ? "landscape" : "portrait"
+}
+
+// The tile takes each image's own aspect ratio, so a true 19.5:9 phone capture
+// is never letterboxed or cropped to fit a fixed 9:16 frame.
 function Tile({ screenshot }: { screenshot: ProjectScreenshot }) {
   const tile = tiles[orientation(screenshot)]
+  const ratio = ratioOf(screenshot)
+  const height = Math.round(tile.width / ratio)
   return (
     <div className={`flex flex-col gap-1.5 ${tile.column}`}>
       <div
-        className={`overflow-hidden rounded-[4px] border border-line bg-surface-inset ${tile.aspect}`}
+        className="overflow-hidden rounded-[4px] border border-line bg-surface-inset"
+        style={{ aspectRatio: String(ratio) }}
       >
         <Image
-          src={urlFor(screenshot.image!).width(tile.width).height(tile.height).url()}
+          src={urlFor(screenshot.image!).width(tile.width).height(height).url()}
           alt={screenshot.caption ?? ""}
           width={tile.width}
-          height={tile.height}
+          height={height}
           className="h-full w-full object-cover"
         />
       </div>
