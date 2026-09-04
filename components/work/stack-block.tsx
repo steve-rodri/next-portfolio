@@ -3,7 +3,7 @@ import { groupByCategory } from "@/lib/stack"
 import { sortTechnologies } from "@/lib/technologies"
 import type { ProjectDetail } from "@/types/portfolio"
 
-/** The project's full stack, grouped into the same category rows as the home Stack. */
+/** The project's full stack, grouped into the same category rows as the home Stack; sits after the story as a ruled appendix. */
 export default function StackBlock({
   technologies,
 }: {
@@ -13,7 +13,7 @@ export default function StackBlock({
   if (!groups.length) return null
 
   return (
-    <div className="flex flex-col gap-3.5 border-b border-line py-6">
+    <div className="mt-8 flex flex-col gap-3.5 border-t border-line pt-6">
       {groups.map((group) => (
         <div
           key={group.label}
