@@ -8,7 +8,7 @@ describe("groupByKind", () => {
     const groups = groupByKind([
       row("Zen Garden", "coursework"),
       row("LinkFront", "paid"),
-      row("Commit Analyzer", "tool"),
+      row("commit-analyzer", "tool"),
       row("MSNY", "paid"),
     ])
     expect(groups.map((g) => g.label)).toEqual([
