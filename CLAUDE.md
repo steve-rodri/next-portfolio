@@ -10,8 +10,11 @@ changing anything visible. All public-facing text goes through the
 
 - pnpm is the package manager. `pnpm-lock.yaml` is what Vercel builds from;
   install with `pnpm install`. `bun run <script>` is fine once installed.
-- `bun test lib` runs the unit tests. `pnpm run lint` and `pnpm run build`
-  are the other gates.
+- `bun test lib` runs the unit tests and `pnpm run build` is the other gate.
+  `pnpm run lint` is not one: the repo has no ESLint config, so it opens an
+  interactive wizard and exits 1.
+- `engines.node` says 24.x. The cloud sandbox ships Node 22; pnpm warns and
+  everything still installs, tests, and builds.
 - `pnpm run typegen` regenerates Sanity types after a schema change.
 - `scripts/` holds one-off Sanity content patches and image pipelines; see
   `scripts/README.md` before reusing one.
